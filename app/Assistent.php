@@ -14,7 +14,7 @@ class Assistent extends Model
 	//protected $primaryKey = 'serie';
  
 	// Atributos que se pueden asignar de manera masiva.
-	protected $fillable = array('modelo','longitud','capacidad','velocidad','alcance');
+	protected $fillable = array('esdeveniment_id','usuari','assistit','dataHora','delegat');
  
 	// Aquí ponemos los campos que no queremos que se devuelvan en las consultas.
 	protected $hidden = ['created_at','updated_at']; 
@@ -29,42 +29,11 @@ class Assistent extends Model
 	//  etc..
  
  
-	// Relación de Avión con Fabricante:
-	public function fabricante()
+	// Relación de Assistent con Esdeveniment:
+	public function esdeveniment()
 	{
-		// 1 avión pertenece a un Fabricante.
-		// $this hace referencia al objeto que tengamos en ese momento de Avión.
-		return $this->belongsTo('App\Fabricante');
+		// 1 Assistent pertenece a un Esdeveniment.
+		// $this hace referencia al objeto que tengamos en ese momento de Assistent.
+		return $this->belongsTo('App\Esdeveniment');
 	}
 }
-
-
-
-
-/////////////////////
-// Nombre de la tabla en MySQL.
-//	protected $table="fabricantes";
- 
-	// Atributos que se pueden asignar de manera masiva.
-//	protected $fillable = array('nombre','direccion','telefono');
- 
-	// Aquí ponemos los campos que no queremos que se devuelvan en las consultas.
-//	protected $hidden = ['created_at','updated_at']; 
- 
-	// Definimos a continuación la relación de esta tabla con otras.
-	// Ejemplos de relaciones:
-	// 1 usuario tiene 1 teléfono   ->hasOne()
-	// 1 teléfono pertenece a 1 usuario   ->belongsTo()
-	// 1 post tiene muchos comentarios  -> hasMany()
-	// 1 comentario pertenece a 1 post ->belongsTo()
-	// 1 usuario puede tener muchos roles  ->belongsToMany()
-	//  etc..
- 
-	// Relación de Fabricante con Aviones:
-//	public function aviones()
-//	{	
-		// 1 fabricante tiene muchos aviones
-		// $this hace referencia al objeto que tengamos en ese momento de Fabricante.
-//		return $this->hasMany('App\Avion');
-//	}
-//////////////////////////
