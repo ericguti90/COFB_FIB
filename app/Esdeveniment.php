@@ -30,7 +30,7 @@ class Esdeveniment extends Model
  
  
 	// Relación de Esdeveniment con Assistent:
-	public function assistent()
+	public function assistents()
 	{
 		// 1 Esdeveniment tiene muchos assistents
 		// $this hace referencia al objeto que tengamos en ese momento de Esdeveniment.
