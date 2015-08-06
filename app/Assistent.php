@@ -36,4 +36,12 @@ class Assistent extends Model
 		// $this hace referencia al objeto que tengamos en ese momento de Assistent.
 		return $this->belongsTo('App\Esdeveniment');
 	}
+
+	// Relación de Assistent con Resposta:
+	public function respostes()
+	{
+		// 1 Assistent tiene muchos respostes
+		// $this hace referencia al objeto que tengamos en ese momento de Assistent.
+		return $this->hasMany('App\Resposta');
+	}
 }

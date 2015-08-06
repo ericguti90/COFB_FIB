@@ -38,7 +38,7 @@ class Pregunta extends Model
 	}
 
 	// Relación de Pregunta con Resposta:
-	public function assistent()
+	public function respostes()
 	{
 		// 1 Pregunta tiene muchas respostes
 		// $this hace referencia al objeto que tengamos en ese momento de Pregunta.

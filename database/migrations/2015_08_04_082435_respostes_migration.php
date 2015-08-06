@@ -14,7 +14,6 @@ class RespostesMigration extends Migration
     {
         Schema::create('respostes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('usuari_id');
             $table->string('resposta');
             $table->dateTime('dataHora');
 
@@ -30,7 +29,15 @@ class RespostesMigration extends Migration
  
             // Indicamos cual es la clave foránea de esta tabla:
             $table->foreign('pregunta_id')->references('id')->on('preguntes');
+
+            // Añadimos la clave foránea con Esdeveniment. esdeveniment_id
+            $table->string('usuari_id');
+ 
+            // Indicamos cual es la clave foránea de esta tabla:
+            $table->foreign('usuari_id')->references('usuari')->on('assistents');
+
             $table->timestamps();
+            $table->unique(array('usuari_id','votacio_id','pregunta_id'));
         });
     }
 

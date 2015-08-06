@@ -103,9 +103,24 @@ class EsdevenimentAssistentController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($idEsdeveniment, $idAssistent)
     {
-        //
+        // Devolverá todos los assistents.
+        //return "Mostrando los aviones del fabricante con Id $idFabricante";
+        $esdeveniment=Esdeveniment::find($idEsdeveniment);
+ 
+        if (! $esdeveniment)
+        {
+            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
+            // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
+            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un esdeveniment con ese código.'])],404);
+        }
+        $assistent = $esdeveniment->assistents()->find($idAssistent);
+        if (! $assistent){
+            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un assistent con ese código.'])],404);
+        }
+        return response()->json(['status'=>'ok','data'=>$assistent],200);
+        //return response()->json(['status'=>'ok','data'=>$fabricante->aviones],200);
     }
 
     /**
@@ -153,9 +168,13 @@ class EsdevenimentAssistentController extends Controller
  
         // Listado de campos recibidos teóricamente.
         $usuari=$request->input('usuari');
-        $assistit=$request->input('assistit');
-        $dataHora=$request->input('dataHora');
-        $delegat=$request->input('delegat');
+        if ($request->input('assistit') == "true") $assistit=true;
+        else $assistit = false;
+        $formato = 'Y-m-d H:i:s';
+        $fecha = DateTime::createFromFormat($formato, $request->input('dataHora'));
+        $dataHora=$fecha;
+        if ($request->input('delegat') == "true") $delegat=true;
+        else $delegat = false;
  
         // Necesitamos detectar si estamos recibiendo una petición PUT o PATCH.
         // El método de la petición se sabe a través de $request->method();

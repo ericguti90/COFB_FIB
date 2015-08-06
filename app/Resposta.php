@@ -38,10 +38,18 @@ class Resposta extends Model
 	}
 
 	// Relación de Resposta con Votacio:
-	public function pregunta()
+	public function votacio()
 	{
 		// 1 Resposta pertenece a una Votacio.
 		// $this hace referencia al objeto que tengamos en ese momento de Assistent.
 		return $this->belongsTo('App\Votacio');
+	}
+
+	// Relación de Resposta con Assistent:
+	public function assistent()
+	{
+		// 1 Resposta pertenece a un Assistent.
+		// $this hace referencia al objeto que tengamos en ese momento de Resposta.
+		return $this->belongsTo('App\Assistent');
 	}
 }

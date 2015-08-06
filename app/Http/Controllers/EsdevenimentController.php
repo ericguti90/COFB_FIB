@@ -129,9 +129,13 @@ class EsdevenimentController extends Controller
  
         // Listado de campos recibidos teóricamente.
         $titol=$request->input('titol');
-        $dataHora=$request->input('dataHora');
+        $formato = 'Y-m-d H:i:s';
+        $fecha = DateTime::createFromFormat($formato, $request->input('dataHora'));
+        $dataHora=$fecha;
         $lloc=$request->input('lloc');
-        $inscripcioOberta=$request->input('inscripcioOberta');
+        if ($request->input('inscripcioOberta') == "true") $inscripcioOberta=true;
+        else $inscripcioOberta = false;
+
  
         // Necesitamos detectar si estamos recibiendo una petición PUT o PATCH.
         // El método de la petición se sabe a través de $request->method();
@@ -226,6 +230,13 @@ class EsdevenimentController extends Controller
         {
             // Devolveremos un código 409 Conflict - [Conflicto] Cuando hay algún conflicto al procesar una petición, por ejemplo en PATCH, POST o DELETE.
             return response()->json(['code'=>409,'message'=>'Este esdeveniment posee assistents y no puede ser eliminado.'],409);
+        }
+
+        //comprobamos si tiene votacions ese esdeveniment.
+        $votacions = $esdeveniment->votacions;
+        if (sizeof($votacions) >0) {
+            // Devolveremos un código 409 Conflict - [Conflicto] Cuando hay algún conflicto al procesar una petición, por ejemplo en PATCH, POST o DELETE.
+            return response()->json(['code'=>409,'message'=>'Este esdeveniment posee votacions y no puede ser eliminado.'],409);
         }
  
         // Procedemos por lo tanto a eliminar el fabricante.

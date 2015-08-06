@@ -15,7 +15,7 @@ class PreguntesMigration extends Migration
         Schema::create('preguntes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titol');
-            $table->string('opcions');
+            $table->string('opcions')->nullable();
             $table->boolean('obligatoria');
 
             //protected $fillable = array('votacio_id','titol','opcions','obligatoria');
@@ -25,6 +25,7 @@ class PreguntesMigration extends Migration
             // Indicamos cual es la clave foránea de esta tabla:
             $table->foreign('votacio_id')->references('id')->on('votacions');
             $table->timestamps();
+            $table->unique(array('titol','votacio_id'));
         });
     }
 
