@@ -38,7 +38,7 @@ class Esdeveniment extends Model
 	}
 
 
-	public function votacio()
+	public function votacions()
 	{
 		return $this->hasOne('App\Votacio');
 	}

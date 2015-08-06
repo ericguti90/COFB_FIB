@@ -20,7 +20,7 @@ class VotacionsMigration extends Migration
 
             //protected $fillable = array('titol','esdeveniment_id','dataHoraIni','dataHoraFin');
             // Añadimos la clave foránea con Esdeveniment. esdeveniment_id
-            $table->integer('esdeveniment_id')->unsigned()->nullable();
+            $table->integer('esdeveniment_id')->unsigned()->nullable()->unique();
  
             // Indicamos cual es la clave foránea de esta tabla:
             $table->foreign('esdeveniment_id')->references('id')->on('esdeveniments');

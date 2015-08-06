@@ -12,6 +12,7 @@ use App\Esdeveniment;
 
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
 use Response;
+use DateTime;
 
 class EsdevenimentAssistentController extends Controller
 {
@@ -55,7 +56,6 @@ class EsdevenimentAssistentController extends Controller
      */
     public function store(Request $request, $idEsdeveniment)
     {
- 'usuari','assistit','dataHora','delegat'
         // Primero comprobaremos si estamos recibiendo todos los campos.
         if ( !$request->input('usuari') || !$request->input('assistit') || !$request->input('dataHora') || !$request->input('delegat') )
         {
@@ -74,6 +74,19 @@ class EsdevenimentAssistentController extends Controller
             return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un esdeveniment con ese código.'])],404);
         }
  
+
+        //damos formato dateTime
+        $formato = 'Y-m-d H:i:s';
+        $fecha = DateTime::createFromFormat($formato, $request->input('dataHora'));
+        $request->merge(array('dataHora' => $fecha));
+
+
+        //control de los booleanos (v1, en la v2 ira fuera)
+        if ($request->input('assistit') == "true") $request->merge(array('assistit' => true));
+        else $request->merge(array('assistit' => false));
+        if ($request->input('delegat') == "true") $request->merge(array('delegat' => true));
+        else $request->merge(array('delegat' => false));
+
         // Si el esdeveniment existe entonces lo almacenamos.
         // Insertamos una fila en Assistents con create pasándole todos los datos recibidos.
         $nouAssistent=$esdeveniment->assistents()->create($request->all());

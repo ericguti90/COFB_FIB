@@ -60,8 +60,12 @@ class EsdevenimentController extends Controller
         $fecha = DateTime::createFromFormat($formato, $request->input('dataHora'));
         $request->merge(array('dataHora' => $fecha));
 
+        //control de los booleanos (v1, en la v2 ira fuera)
+        if ($request->input('inscripcioOberta') == "true") $request->merge(array('inscripcioOberta' => true));
+        else $request->merge(array('inscripcioOberta' => false));
+
         $nouEsdeveniment=Esdeveniment::create($request->all());
- 
+        
         // Más información sobre respuestas en http://jsonapi.org/format/
         // Devolvemos el código HTTP 201 Created – [Creada] Respuesta a un POST que resulta en una creación. Debería ser combinado con un encabezado Location, apuntando a la ubicación del nuevo recurso.
         $response = Response::make(json_encode(['data'=>$nouEsdeveniment]), 201)->header('Location', 'http://www.dominio.local/esdeveniments/'.$nouEsdeveniment->id)->header('Content-Type', 'application/json');

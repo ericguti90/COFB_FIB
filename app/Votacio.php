@@ -29,7 +29,7 @@ class Votacio extends Model
  
  
 	// Relación de Votació con Esdeveniment:
-	public function esdeveniment()
+	public function esdeveniments()
 	{
 		// 1 Votació tiene 0..1 Esdeveniment
 		// $this hace referencia al objeto que tengamos en ese momento de Votacio.
@@ -37,7 +37,7 @@ class Votacio extends Model
 	}
 
 	// Relación de Votacio con Pregunta:
-	public function pregunta()
+	public function preguntes()
 	{
 		// 1 Votacio tiene muchas preguntes
 		// $this hace referencia al objeto que tengamos en ese momento de Votacio.
@@ -45,7 +45,7 @@ class Votacio extends Model
 	}
 
 	// Relación de Votacio con Resposta:
-	public function resposta()
+	public function respostes()
 	{
 		// 1 Votacio tiene muchas respostes
 		// $this hace referencia al objeto que tengamos en ese momento de Votacio.
