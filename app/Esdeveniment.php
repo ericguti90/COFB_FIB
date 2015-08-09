@@ -14,7 +14,7 @@ class Esdeveniment extends Model
 	//protected $primaryKey = 'serie';
  
 	// Atributos que se pueden asignar de manera masiva.
-	protected $fillable = array('titol','dataHora','lloc','inscripcioOberta');
+	protected $fillable = array('titol','dataHora','lloc','inscripcioOberta','presencial');
  
 	// Aquí ponemos los campos que no queremos que se devuelvan en las consultas.
 	protected $hidden = ['created_at','updated_at']; 
@@ -40,7 +40,7 @@ class Esdeveniment extends Model
 
 	public function votacions()
 	{
-		return $this->hasOne('App\Votacio');
+		return $this->hasMany('App\Votacio');
 	}
 
 }

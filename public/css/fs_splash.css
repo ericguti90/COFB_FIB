@@ -1,0 +1,253 @@
+@font-face {
+	font-family:'aller_lightregular';
+	src:url("../fonts/aller-light-webfont.eot");
+	src:url("../fonts/aller-light-webfont.eot?#iefix") format('embedded-opentype'),url("../fonts/aller-light-webfont.woff") format('woff'),url("../fonts/aller-light-webfont.ttf") format('truetype'),url("../fonts/aller-light-webfont.svg#aller_lightregular") format('svg');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+	font-family:'aller_lightitalic';
+	src:url("../fonts/aller-lightitalic-webfont.eot");
+	src:url("../fonts/aller-lightitalic-webfont.eot?#iefix") format('embedded-opentype'),url("../fonts/aller-lightitalic-webfont.woff") format('woff'),url("../fonts/aller-lightitalic-webfont.ttf") format('truetype'),url("../fonts/aller-lightitalic-webfont.svg#aller_lightitalic") format('svg');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+	font-family:'cof-icons';
+	src:url("../fonts/icomoon.eot?-q5s67w");
+	src:url("../fonts/icomoon.eot?#iefix-q5s67w") format('embedded-opentype'),url("../fonts/icomoon.woff?-q5s67w") format('woff'),url("../fonts/icomoon.ttf?-q5s67w") format('truetype'),url("../fonts/icomoon.svg?-q5s67w#icomoon") format('svg');
+	font-weight:normal;
+	font-style:normal;
+}
+a{
+	outline: medium none;
+	text-decoration: none;
+}
+p {
+	color:#4b585b;
+	font-size:.8em;
+	padding:0;
+	margin:0;
+	margin-bottom: 8px;
+}
+* {
+	padding:0;
+	margin:0;
+	-webkit-box-sizing:border-box;
+	 	 -moz-box-sizing:border-box;
+					box-sizing:border-box;	
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+body {
+	font-family:"aller_lightregular";
+	font-size:16px;
+	background-color: #f4f6f4;
+	padding-top: 60px;
+}
+#wrapper{
+    background-color: #FFFFFF;
+    margin: 0 auto;
+    max-width: 746px;
+    padding-bottom: 45px;
+    padding-top: 45px;
+    width: 96%;
+		-webkit-border-radius: 10px;
+		   -moz-border-radius: 10px;
+		    -ms-border-radius: 10px;
+		     -o-border-radius: 10px;
+		        border-radius: 10px;
+}
+#navigation, #footer{
+	display: none;
+}
+#banner{
+    background-color: #00A9A1;
+    height: 39px;
+    padding-left: 20px;
+    padding-right: 120px;
+    width: 100%;
+    margin-bottom: 32px;
+}
+#heading {
+	display: table;
+	width:100%;
+	background: none repeat scroll 0 0 #00B2D9;
+}
+.logo-container, .titulo-superior{
+    display: table-cell;
+    text-align: left;
+    width: 10%;
+}
+.titulo-superior{
+	vertical-align: middle;
+	font-size:1.2em;
+	color:#ffffff;
+	width: 90%;
+	padding-left: 10px;
+}
+.logo {
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: block;
+    padding: 0 20px;
+    width: 217px;
+}
+.col-izquierda {
+    background-color: #FAFAFA;
+    margin-bottom: 36px;
+    overflow: hidden;
+    padding:0 2%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 100%;
+
+}
+.portlet-topper{
+	display: none;
+}
+.img-splash{
+    display: block;
+    float: left;
+    margin: 0 1%;
+    position: relative;
+    width: 31.33%;
+}
+img {
+    border: medium none;
+    height: auto;
+    vertical-align: top;
+    width: 100%;
+}
+.col-derecha {
+	  margin: 0 auto;
+    width: 70%;
+}
+.verde {
+	color:#00a9a1;
+}
+#progressbar {
+    background-color: #B7B7B7;
+    height: 4px;
+    width: 100%;
+ 	-webkit-border-radius: 3px;
+ 	   -moz-border-radius: 3px;
+ 	    -ms-border-radius: 3px;
+ 	     -o-border-radius: 3px;
+ 	        border-radius: 3px;    
+}
+#indicator {
+  width:0px;
+  background-color:#00a9a1;
+  height:4px;
+   	-webkit-border-radius: 3px;
+ 	   -moz-border-radius: 3px;
+ 	    -ms-border-radius: 3px;
+ 	     -o-border-radius: 3px;
+ 	        border-radius: 3px;
+}
+#progressnum
+{
+  text-align:left;
+}
+
+
+
+
+
+/* ************************************************************************************************************************************************************ */
+/* ******************************************************************** COMIENZA EL RESPONSIVE **************************************************************** */
+/* ************************************************************************************************************************************************************ */
+ @media only screen and (max-width: 996px) {
+
+}
+
+/* ************************************************************************************************************************************************************ */
+@media only screen and (max-width: 768px) {
+#banner {
+	padding-right: 90px;
+}
+/* ************************************************************************************************************************************************************************* */
+@media only screen and (max-width: 767px) {
+
+}
+/* ************************************************************************************************************************************************************************* */
+@media only screen and (max-width: 670px) {
+
+
+body {
+    padding-top: 28px;
+}
+#wrapper {
+    padding-bottom: 24px;
+    padding-top: 24px;
+}
+#banner {
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: auto;
+    padding: 0;
+}
+#heading{
+background: none repeat scroll 0 0 #FFFFFF;
+}
+.logo-container{
+    background-color: #FFFFFF;
+    border-left: 22px solid #00A9A1;
+    display: block;
+    margin-bottom: 15px;
+    position: relative;
+    width: 100%;
+}
+.logo {
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    width: 177px;
+}
+.titulo-superior {
+    background-color: #00B2D9;
+    display: block;
+    padding-bottom: 10px;
+    padding-left: 22px;
+    padding-top: 10px;
+    position: relative;
+    width: 100%;
+}
+.img-splash {
+    display: block;
+    float: none;
+    margin: 0 1%;
+    margin-top: 24px;
+    position: relative;
+    width: 98%;
+}
+.img-splash:first-child {
+		margin-top: 0px;
+}
+.col-izquierda {
+margin-bottom: 24px;
+}
+.col-derecha {
+    width: 90%;
+}
+
+}
+/* ************************************************************************************************************************************************************************* */
+@media only screen and (max-width: 600px) {
+
+}
+/* ************************************************************************************************************************************************************************* */
+@media only screen and (max-width: 480px) {
+
+}
+/* ************************************************************************************************************************************************************************* */
+@media only screen and (max-width: 320px) {
+
+#wrapper {
+    margin: 0 5px 28px;
+    min-width: 310px;
+}
+
+}

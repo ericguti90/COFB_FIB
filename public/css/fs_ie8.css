@@ -1,0 +1,80 @@
+.cebra-1.odd{
+	background-color:#f9faf9;
+}
+.cebra-2.odd{
+	background-color:#fcfdfc;
+}
+.cebra-3.odd{
+	background-color:#f4f6f4;
+}
+.listado-tipo-2 .list-2 li.even {
+background-color:#e5f3f5;
+}
+.listado-tipo-2 .list-2 li.even:hover {
+background-color:#d8e3e6;
+}
+.noticias article.even {
+	margin-right:0;
+}
+.proyectos .proy-item.even {
+	margin-right:0;
+}
+.column-3.tries {
+	clear: both;
+}
+.table-basic tr.even{
+    background-color: #FDFEFE;
+    border: 2px solid #DDEAED;
+}
+.table-basic tr.even td > div {
+    border-left:1px solid #ddeaed;
+}
+.table-basic tr.even td:first-child > div {
+		border:0px;
+}
+.table-basic thead tr {
+    background-color: #F9FBFC;
+    border: 2px solid #DDEAED;
+}
+/* 	.aviso.checked:before {
+	content:"\e601";
+	color:#1193af;
+	font-family:"cof-icons";
+	font-size:13px;
+	text-align:center;
+	line-height:15px;
+}
+.aviso.checked:before {
+	content:"\e601";
+	color:#1193af;
+	font-family:"cof-icons";
+	font-size:13px;
+	text-align:center;
+	line-height:15px;
+}
+
+.label-red.checked:before {
+	background:url("../img/iconos/checked-form.png") no-repeat 50%;
+	background-color: #fafbfa;
+	line-height:13px;
+} */
+
+input[type=checkbox], input[type=radio] {
+    display: inline-block;
+    height: 20px;
+    vertical-align: top;
+    padding-left:0px;
+    padding-right:0px;
+}
+.aviso:before {
+	display: none !important;
+}
+.label-red:before {
+display: none !important;
+}
+.aviso, .label-red {
+padding-left: 0px;
+}
+.onoffswitch-label{
+	display: none;
+}

@@ -45,7 +45,7 @@ class EsdevenimentController extends Controller
     public function store(Request $request)
     {
         // Primero comprobaremos si estamos recibiendo todos los campos.
-        if (!$request->input('titol') || !$request->input('dataHora') || !$request->input('lloc') || !$request->input('inscripcioOberta'))
+        if (!$request->input('titol') || !$request->input('dataHora') || !$request->input('lloc') || !$request->input('inscripcioOberta') || !$request->input('presencial') )
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
             // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
@@ -63,6 +63,8 @@ class EsdevenimentController extends Controller
         //control de los booleanos (v1, en la v2 ira fuera)
         if ($request->input('inscripcioOberta') == "true") $request->merge(array('inscripcioOberta' => true));
         else $request->merge(array('inscripcioOberta' => false));
+        if ($request->input('presencial') == "true") $request->merge(array('presencial' => true));
+        else $request->merge(array('presencial' => false));
 
         $nouEsdeveniment=Esdeveniment::create($request->all());
         
@@ -135,6 +137,8 @@ class EsdevenimentController extends Controller
         $lloc=$request->input('lloc');
         if ($request->input('inscripcioOberta') == "true") $inscripcioOberta=true;
         else $inscripcioOberta = false;
+        if ($request->input('presencial') == "true") $presencial=true;
+        else $presencial = false;
 
  
         // Necesitamos detectar si estamos recibiendo una petición PUT o PATCH.
@@ -169,6 +173,12 @@ class EsdevenimentController extends Controller
                 $esdeveniment->inscripcioOberta = $inscripcioOberta;
                 $bandera=true;
             }
+
+            if ($presencial)
+            {
+                $esdeveniment->presencial = $presencial;
+                $bandera=true;
+            }
  
             if ($bandera)
             {
@@ -186,7 +196,7 @@ class EsdevenimentController extends Controller
  
  
         // Si el método no es PATCH entonces es PUT y tendremos que actualizar todos los datos.
-        if (!$titol || !$dataHora || !$lloc || !$inscripcioOberta)
+        if (!$titol || !$dataHora || !$lloc || !$inscripcioOberta || !$presencial)
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
             return response()->json(['errors'=>array(['code'=>422,'message'=>'Faltan valores para completar el procesamiento.'])],422);
@@ -196,6 +206,7 @@ class EsdevenimentController extends Controller
         $esdeveniment->dataHora = $dataHora;
         $esdeveniment->lloc = $lloc;
         $esdeveniment->inscripcioOberta = $inscripcioOberta;
+        $esdeveniment->presencial = $presencial;
  
         // Almacenamos en la base de datos el registro.
         $esdeveniment->save();

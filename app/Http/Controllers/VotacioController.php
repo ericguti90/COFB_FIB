@@ -47,7 +47,7 @@ class VotacioController extends Controller
     public function store(Request $request)
     {
         // Primero comprobaremos si estamos recibiendo todos los campos.
-        if (!$request->input('titol') || !$request->input('dataHoraIni') || !$request->input('dataHoraFin'))
+        if (!$request->input('titol') || !$request->input('dataHoraIni') || !$request->input('dataHoraFin') || !$request->input('idEsdeveniment'))
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
             // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
@@ -65,19 +65,17 @@ class VotacioController extends Controller
         $request->merge(array('dataHoraFin' => $fechaFin));
         $nouVotacio="";
         //Buscamos el esdeveniment
-        if ($request->input('idEsdeveniment')) {
-            $esdeveniment= Esdeveniment::find($request->input('idEsdeveniment'));
-            // Si no existe el esdeveniment que le hemos pasado mostramos otro código de error de no encontrado.
-            if (!$esdeveniment)
-            {
-                // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
-                // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
-                return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un esdeveniment con ese código.'])],404);
-            }
-            // Guardamos el esdeveniment con la foreign key correspondiente.
-            $nouVotacio=$esdeveniment->votacions()->create($request->all());
+        
+        $esdeveniment= Esdeveniment::find($request->input('idEsdeveniment'));
+        // Si no existe el esdeveniment que le hemos pasado mostramos otro código de error de no encontrado.
+        if (!$esdeveniment)
+        {
+            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
+            // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
+            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un esdeveniment con ese código.'])],404);
         }
-        else $nouVotacio=Votacio::create($request->all());
+        // Guardamos el esdeveniment con la foreign key correspondiente.
+        $nouVotacio=$esdeveniment->votacions()->create($request->all());
            
         // Más información sobre respuestas en http://jsonapi.org/format/
         // Devolvemos el código HTTP 201 Created – [Creada] Respuesta a un POST que resulta en una creación. Debería ser combinado con un encabezado Location, apuntando a la ubicación del nuevo recurso.

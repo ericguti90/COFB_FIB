@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
     <head>
         <title>Laravel</title>
@@ -43,3 +43,12 @@
         </div>
     </body>
 </html>
+-->
+
+@extends('layouts.masterCOFB')
+ 
+@section('titulo') Titulo de la pagina @stop
+
+@section('contenido')
+
+@stop 

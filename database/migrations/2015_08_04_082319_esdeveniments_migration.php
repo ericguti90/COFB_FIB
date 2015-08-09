@@ -18,6 +18,7 @@ class EsdevenimentsMigration extends Migration
             $table->dateTime('dataHora');
             $table->string('lloc');
             $table->boolean('inscripcioOberta');
+            $table->boolean('presencial');
 
 
             //protected $fillable = array('titol','dataHora','lloc','inscripcioOberta');
