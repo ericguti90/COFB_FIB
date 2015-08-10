@@ -27,7 +27,7 @@ class EsdevenimentController extends Controller
             return response()->json(['status'=>'ok','data'=>Esdeveniment::all()], 200);
         }
         else {
-            $esd = Esdeveniment::all();
+            $esd = Esdeveniment::orderBy('dataHora','desc')->paginate(5);
             foreach ($esd as $item) {
                 $count = $item->assistents()->count();
                 $item->num = $count;

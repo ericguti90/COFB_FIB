@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
@@ -40,7 +40,7 @@ header('Content-Type: text/html; charset=UTF-8');
                     <li class="submenu">
                         <ul>
                             <li class="item m-mobilet sub"><button type="button" id="menu-lateral" class=""><span>Menú Activitat de l´Oficina</span><img src="img/iconos/menu.png" alt="search"></button></li>
-                            <li class="item m-mobilet item2"><a href="#">Esdeveniments</a></li>
+                            <li class="item m-mobilet item2"><a href="/esdeveniments">Esdeveniments</a></li>
                             <li class="item m-mobilet item2"><a href="#">Votacions</a></li>
                             <li class="item m-mobilet no-border item2"><a href="#">Usuaris</a></li>
                         </ul>
@@ -52,66 +52,7 @@ header('Content-Type: text/html; charset=UTF-8');
                 <div class="menu-desplegable sb-slidebar sb-left">
                     <div class="menu_container">
                         <a id="menu-inferior-mobile" class="boton-mobile-derecha"><span>Menú principal</span></a>                   
-                        <h1>Activitat de l’Oficina</h1> <!-- Titulo de la home seleccionada -->
-                        <ul>
-                            <li class="only_mobile"><span>Activitat de l’Oficina</span></li> <!-- Titulo de la home seleccionada -->
-                            <li>
-                                <a href="#"><span class="tit_actual">Actualitat dia a dia</span><span class="tit_anterior">Activitat de l’Oficina</span></a>
-                                <div class="subnivel">
-                                    <ul>
-                                        <li class="only_mobile"><span>Actualitat dia a dia</span></li>
-                                        <li><a href="#">Guía de dispensació del SCS</a></li>
-                                        <li><a href="#">Formules magistrals i preparats oficinals</a></li>
-                                        <li><a href="#">Accés SIFARE (recepta electrònica)</a></li>
-                                        <li><a href="#">Ortopèdia</a></li>
-                                        <li><a href="#">Serveis concentrats</a></li>
-                                        <li><a href="#">Informació al pacient</a></li>
-                                        <li>
-                                            <a href="#"><span class="tit_actual">Actualitat</span><span class="tit_anterior">Actualitat dia a dia</span></a>
-                                            <div class="subnivel">
-                                                <ul>
-                                                <li class="only_mobile"><span>Actualitat</span></li>
-                                                    <li><a href="#">Alertes de medicaments</a></li>
-                                                    <li>
-                                                        <a href="#"><span class="tit_actual">Comunicats del Collegi</span><span class="tit_anterior">Actualitat</span></a>
-                                                        <div class="subnivel">
-                                                            <ul>
-                                                                <li class="only_mobile"><span>Comunicats del Collegi</span></li>
-                                                                <li><a href="#">Últims comunicats</a></li>
-                                                                <li><a href="#">Facturació (inclou de receptes)</a></li>
-                                                                <li>
-                                                                    <a href="#"><span class="tit_actual">Comptabilitat</span><span class="tit_anterior">Comunicats del Collegi</span></a>
-                                                                    <div class="subnivel">
-                                                                        <ul>
-                                                                            <li class="only_mobile"><span>Comptabilitat</span></li>
-                                                                            <li><a href="#">Otra</a></li>
-                                                                            <li class="selected"><a href="#">Otra</a></li> <!-- Ejemplo de seleccionado -->
-                                                                            <li><a href="#">Otra</a></li>
-                                                                        </ul>   
-                                                                    </div>
-                                                                </li>
-                                                                <li><a href="#">Legislació</a></li>
-                                                                <li><a href="#">Preus</a></li>
-                                                                <li><a href="#">Campanyes</a></li>
-                                                                <li><a href="#">Serveis complementaris</a></li>
-                                                                <li><a href="#">Medicaments d’abús</a></li>
-                                                                <li><a href="#">Avisos SIFARE</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>   
-                                                    <li><a href="#">Representació dels Collegiats</a></li>
-                                                    <li><a href="#">Subscripció a l’Actualitat de l’Oficina de Farmàcia</a></li>    
-                                                </ul>
-                                            </div>
-                                        </li>   
-                                    </ul>
-                                </div>
-                            </li>
-                            <li><a href="#">Guía de dispensació del SCS</a></li>
-                            <li><a href="#">Actualitat espordica</a></li>
-                            <li class="selected"><a href="#">Documentació i altres</a></li> <!-- Ejemplo de seleccionado -->
-                            <li><a href="#">Assegurances</a></li>
-                        </ul>
+                        @yield('menu','No hi ha menu')
                     </div>
                 </div>
                 <!--Fin Menu Desplegable Oculto-->              
