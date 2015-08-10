@@ -9,4 +9,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 abstract class Controller extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
+
+    public function isAPI(){
+    	return (Route::getCurrentRoute()->getPrefix() == "api");
+    }
 }

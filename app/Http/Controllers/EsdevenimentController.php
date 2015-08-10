@@ -23,7 +23,20 @@ class EsdevenimentController extends Controller
      */
     public function index()
     {
-        return response()->json(['status'=>'ok','data'=>Esdeveniment::all()], 200);
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api') {
+            return response()->json(['status'=>'ok','data'=>Esdeveniment::all()], 200);
+        }
+        else {
+            $esd = Esdeveniment::all();
+            foreach ($esd as $item) {
+                $count = $item->assistents()->count();
+                $item->num = $count;
+
+            }
+            return view('esdevenimentLayouts.index')->with("esd",$esd);
+        }
+    
+            
     }
 
     /**

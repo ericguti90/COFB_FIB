@@ -17,6 +17,9 @@
           <script src="js/varios-ie8.js"></script>
           <link rel="stylesheet" href="css/fs_ie8.css" />
         <![endif]-->
+        <?php
+header('Content-Type: text/html; charset=UTF-8'); 
+?>
 </head>
 <body class="">
     <div id="wrapper">
