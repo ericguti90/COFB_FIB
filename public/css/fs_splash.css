@@ -1,51 +1,131 @@
+.inputText {
+    background-color:#ffffff;
+    border:1px solid #e9edec;
+    color:#aeb5b7;
+    font-size:.8em;
+    outline:0;
+    width:100%;
+    line-height: 32px;
+    font-family:'aller_lightregular';
+}
+.btn {
+    border:none;
+    border-radius:5px;
+    color:#fff;
+    cursor:pointer;
+    display:inline-block;
+    font-size:.8em;
+    height:32px;
+    line-height:32px;
+    outline:0;
+    padding:0 22px;
+    padding-top: 2px;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-family:'aller_lightregular';
+    margin: 0.8em 0px 0.8em 140px;
+    text-align: center;
+}
+.btn:hover {
+    background-color:#c0610c;
+}
+.btn-naranja {
+    background-color:#e67e22;
+}
+label {
+    color:#5e7074;
+    font-size:.85em;
+    display:block;
+    margin:0 0 .8em 0;
+    padding:0;
+    text-align:left;
+}
+#form-activ-collegial h3 {
+    border-bottom:1px solid #b7c6c9;
+    color:#105b7a;
+    font-family:"aller_lightregular";
+    font-size:.8em;
+    padding-bottom:.6em;
+    margin-bottom:1em;
+    margin-left: -8px;
+    width: 102%;
+}
+    #form-activ-collegial #fieldsets .actual,#form-activ-collegial #fieldsets .next {
+    margin-bottom:1.25em;
+    overflow:hidden;
+}
+#form-activ-collegial fieldset, #form-activ-collegial .caja-texto {
+    background-color: #F4F6F4;
+    margin-bottom: 4px;
+        padding: 20px 20px 0;
+}
+#form-activ-collegial .caja-texto {
+        padding-bottom: 10px;
+}
+
+    #form-activ-collegial .borde-azul {
+    border-top:4px solid #008ba9;
+}
+
+fieldset {
+    margin:0;
+    padding:0;
+    border:none;
+}
+
+
+
+
+
+
 @font-face {
-	font-family:'aller_lightregular';
-	src:url("../fonts/aller-light-webfont.eot");
-	src:url("../fonts/aller-light-webfont.eot?#iefix") format('embedded-opentype'),url("../fonts/aller-light-webfont.woff") format('woff'),url("../fonts/aller-light-webfont.ttf") format('truetype'),url("../fonts/aller-light-webfont.svg#aller_lightregular") format('svg');
-	font-weight:normal;
-	font-style:normal;
+    font-family:'aller_lightregular';
+    src:url("../fonts/aller-light-webfont.eot");
+    src:url("../fonts/aller-light-webfont.eot?#iefix") format('embedded-opentype'),url("../fonts/aller-light-webfont.woff") format('woff'),url("../fonts/aller-light-webfont.ttf") format('truetype'),url("../fonts/aller-light-webfont.svg#aller_lightregular") format('svg');
+    font-weight:normal;
+    font-style:normal;
 }
 @font-face {
-	font-family:'aller_lightitalic';
-	src:url("../fonts/aller-lightitalic-webfont.eot");
-	src:url("../fonts/aller-lightitalic-webfont.eot?#iefix") format('embedded-opentype'),url("../fonts/aller-lightitalic-webfont.woff") format('woff'),url("../fonts/aller-lightitalic-webfont.ttf") format('truetype'),url("../fonts/aller-lightitalic-webfont.svg#aller_lightitalic") format('svg');
-	font-weight:normal;
-	font-style:normal;
+    font-family:'aller_lightitalic';
+    src:url("../fonts/aller-lightitalic-webfont.eot");
+    src:url("../fonts/aller-lightitalic-webfont.eot?#iefix") format('embedded-opentype'),url("../fonts/aller-lightitalic-webfont.woff") format('woff'),url("../fonts/aller-lightitalic-webfont.ttf") format('truetype'),url("../fonts/aller-lightitalic-webfont.svg#aller_lightitalic") format('svg');
+    font-weight:normal;
+    font-style:normal;
 }
 @font-face {
-	font-family:'cof-icons';
-	src:url("../fonts/icomoon.eot?-q5s67w");
-	src:url("../fonts/icomoon.eot?#iefix-q5s67w") format('embedded-opentype'),url("../fonts/icomoon.woff?-q5s67w") format('woff'),url("../fonts/icomoon.ttf?-q5s67w") format('truetype'),url("../fonts/icomoon.svg?-q5s67w#icomoon") format('svg');
-	font-weight:normal;
-	font-style:normal;
+    font-family:'cof-icons';
+    src:url("../fonts/icomoon.eot?-q5s67w");
+    src:url("../fonts/icomoon.eot?#iefix-q5s67w") format('embedded-opentype'),url("../fonts/icomoon.woff?-q5s67w") format('woff'),url("../fonts/icomoon.ttf?-q5s67w") format('truetype'),url("../fonts/icomoon.svg?-q5s67w#icomoon") format('svg');
+    font-weight:normal;
+    font-style:normal;
 }
 a{
-	outline: medium none;
-	text-decoration: none;
+    outline: medium none;
+    text-decoration: none;
 }
 p {
-	color:#4b585b;
-	font-size:.8em;
-	padding:0;
-	margin:0;
-	margin-bottom: 8px;
+    color:#4b585b;
+    font-size:.8em;
+    padding:0;
+    margin:0;
+    margin-bottom: 8px;
 }
 * {
-	padding:0;
-	margin:0;
-	-webkit-box-sizing:border-box;
-	 	 -moz-box-sizing:border-box;
-					box-sizing:border-box;	
+    padding:0;
+    margin:0;
+    -webkit-box-sizing:border-box;
+         -moz-box-sizing:border-box;
+                    box-sizing:border-box;  
 }
 html, body {
     width: 100%;
     height: 100%;
 }
 body {
-	font-family:"aller_lightregular";
-	font-size:16px;
-	background-color: #f4f6f4;
-	padding-top: 60px;
+    font-family:"aller_lightregular";
+    font-size:16px;
+    background-color: #f4f6f4;
+    padding-top: 20px;
 }
 #wrapper{
     background-color: #FFFFFF;
@@ -54,14 +134,14 @@ body {
     padding-bottom: 45px;
     padding-top: 45px;
     width: 96%;
-		-webkit-border-radius: 10px;
-		   -moz-border-radius: 10px;
-		    -ms-border-radius: 10px;
-		     -o-border-radius: 10px;
-		        border-radius: 10px;
+        -webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+             -o-border-radius: 10px;
+                border-radius: 10px;
 }
 #navigation, #footer{
-	display: none;
+    display: none;
 }
 #banner{
     background-color: #00A9A1;
@@ -72,9 +152,9 @@ body {
     margin-bottom: 32px;
 }
 #heading {
-	display: table;
-	width:100%;
-	background: none repeat scroll 0 0 #00B2D9;
+    display: table;
+    width:100%;
+    background: none repeat scroll 0 0 #00B2D9;
 }
 .logo-container, .titulo-superior{
     display: table-cell;
@@ -82,11 +162,11 @@ body {
     width: 10%;
 }
 .titulo-superior{
-	vertical-align: middle;
-	font-size:1.2em;
-	color:#ffffff;
-	width: 90%;
-	padding-left: 10px;
+    vertical-align: middle;
+    font-size:1.2em;
+    color:#ffffff;
+    width: 90%;
+    padding-left: 10px;
 }
 .logo {
     background: none repeat scroll 0 0 #FFFFFF;
@@ -105,7 +185,7 @@ body {
 
 }
 .portlet-topper{
-	display: none;
+    display: none;
 }
 .img-splash{
     display: block;
@@ -121,31 +201,31 @@ img {
     width: 100%;
 }
 .col-derecha {
-	  margin: 0 auto;
+      margin: 0 auto;
     width: 70%;
 }
 .verde {
-	color:#00a9a1;
+    color:#00a9a1;
 }
 #progressbar {
     background-color: #B7B7B7;
     height: 4px;
     width: 100%;
- 	-webkit-border-radius: 3px;
- 	   -moz-border-radius: 3px;
- 	    -ms-border-radius: 3px;
- 	     -o-border-radius: 3px;
- 	        border-radius: 3px;    
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+         -o-border-radius: 3px;
+            border-radius: 3px;    
 }
 #indicator {
   width:0px;
   background-color:#00a9a1;
   height:4px;
-   	-webkit-border-radius: 3px;
- 	   -moz-border-radius: 3px;
- 	    -ms-border-radius: 3px;
- 	     -o-border-radius: 3px;
- 	        border-radius: 3px;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+         -o-border-radius: 3px;
+            border-radius: 3px;
 }
 #progressnum
 {
@@ -166,7 +246,7 @@ img {
 /* ************************************************************************************************************************************************************ */
 @media only screen and (max-width: 768px) {
 #banner {
-	padding-right: 90px;
+    padding-right: 90px;
 }
 /* ************************************************************************************************************************************************************************* */
 @media only screen and (max-width: 767px) {
@@ -224,7 +304,7 @@ background: none repeat scroll 0 0 #FFFFFF;
     width: 98%;
 }
 .img-splash:first-child {
-		margin-top: 0px;
+        margin-top: 0px;
 }
 .col-izquierda {
 margin-bottom: 24px;
@@ -251,3 +331,15 @@ margin-bottom: 24px;
 }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

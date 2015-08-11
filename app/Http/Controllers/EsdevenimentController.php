@@ -13,6 +13,7 @@ use App\Esdeveniment;
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
 use Response;
 use DateTime;
+use Auth;
 
 class EsdevenimentController extends Controller
 {

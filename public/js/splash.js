@@ -14,11 +14,14 @@ function prog()
   actualprogress += 5;	
   indicator.style.width=actualprogress + "%";
   progressnum.innerHTML = actualprogress;
-  if(actualprogress == maxprogress) clearInterval(itv);   
+  if(actualprogress == maxprogress) {
+    clearInterval(itv);
+    window.location.replace("/esdeveniments");
+  }
 }
 
 
-$(document).ready(function(){
+function start(){
 
 			//barra de progeso de html 5
         var progressbar = $('#progressbar'), 
@@ -33,7 +36,8 @@ $(document).ready(function(){
             $('.progress-value').html(value + '%'); 
      
             if (value == max) { 
-                clearInterval(animate);                     
+                clearInterval(animate);
+                window.location.replace("/esdeveniments");                    
             } 
         }; 
      
@@ -45,4 +49,4 @@ $(document).ready(function(){
 
 			itv = setInterval(prog, 100);
 
-});
+};
