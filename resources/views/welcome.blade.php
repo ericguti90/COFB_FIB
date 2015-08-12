@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="column-form med-2"> 
                                         <label for="tel-2" style="margin-top:.8em">Contrasenya</label>
-                                        <input name="password" id="tel-2" type="text" class="inputText">
+                                        <input name="password" id="tel-2" type="password" class="inputText">
                                     </div>
                                     <!--<input type="hidden" name="_token" value="{{ csrf_token() }}"/>-->
                                 </div>

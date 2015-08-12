@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Assistent extends Model
+class VotacioAssistent extends Model
 {
     // Nombre de la tabla en MySQL.
-	protected $table='assistents';
+	protected $table='votacioAssistent';
  
 	// Eloquent asume que cada tabla tiene una clave primaria con una columna llamada id.
 	// Si éste no fuera el caso entonces hay que indicar cuál es nuestra clave primaria en la tabla:
 	//protected $primaryKey = 'serie';
  
 	// Atributos que se pueden asignar de manera masiva.
-	protected $fillable = array('esdeveniment_id','usuari','assistit','dataHora','delegat');
+	protected $fillable = array('assistent_id','votacio_id');
  
 	// Aquí ponemos los campos que no queremos que se devuelvan en las consultas.
 	protected $hidden = ['created_at','updated_at']; 
@@ -29,27 +29,16 @@ class Assistent extends Model
 	//  etc..
  
  
-	// Relación de Assistent con Esdeveniment:
-	public function esdeveniment()
+	// Relación de VotacioAssistent con Assistent:
+	public function assistent()
 	{
-		// 1 Assistent pertenece a un Esdeveniment.
-		// $this hace referencia al objeto que tengamos en ese momento de Assistent.
-		return $this->belongsTo('App\Esdeveniment');
+		// 1 VotacioAssistent pertenece a un Assistent.
+		// $this hace referencia al objeto que tengamos en ese momento de VotacioAssistent.
+		return $this->belongsTo('App\Assistent');
 	}
-
-	// Relación de Assistent con Resposta:
-	public function respostes()
+	
+	public function votacio()
 	{
-		// 1 Assistent tiene muchos respostes
-		// $this hace referencia al objeto que tengamos en ese momento de Assistent.
-		return $this->hasMany('App\Resposta');
-	}
-
-	// Relación de Assistent con VotacioAssistent
-	public function votacions()
-	{
-		// 1 Assistent tiene muchas votacions
-		// $this hace referencia al objeto que tengamos en ese momento de Assistent.
-		return $this->hasMany('App\VotacioAssistent');
+		return $this->belongsTo('App\Votacio');
 	}
 }

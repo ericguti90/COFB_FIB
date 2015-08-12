@@ -19,7 +19,7 @@ class HomeController extends Controller {
  
 	public function getIndex()
 	{
-		return Redirect::to('users');
+		return Redirect::to('esdeveniments');
 	}
  
  

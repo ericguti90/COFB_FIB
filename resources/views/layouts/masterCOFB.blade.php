@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/varios.js"></script>
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/varios.js"></script>
     <title>Collegi de Farmacèutics de Barcelona</title>
-    <link rel="stylesheet" href="css/fs_main.css" />
-    <link rel="stylesheet" href="css/fs_responsive.css" />
-    <link rel="stylesheet" href="css/slidebars.css" />
+    <link rel="stylesheet" href="/css/fs_main.css" />
+    <link rel="stylesheet" href="/css/fs_responsive.css" />
+    <link rel="stylesheet" href="/css/slidebars.css" />
     <!--[if lt IE 9]>
           <script src="js/html5.js" type="text/javascript"></script>
           <script src="js/css3-mediaqueries_src.js" type="text/javascript"></script>
@@ -28,7 +28,7 @@ header('Content-Type: text/html; charset=UTF-8');
             <!--Contenedor Header: Logo -->
             <div id="heading" class="contenedor-header">
                 <a class="logo left" href="#">
-                    <img src="img/logo.jpg" alt="Collegui de Farmacéutics de Barcelona" width="171" height="36"/>
+                    <img src="/img/logo.jpg" alt="Collegui de Farmacéutics de Barcelona" width="171" height="36"/>
                 </a>
             </div>
             <!--Fin Contenedor Header: Logo -->
@@ -36,10 +36,10 @@ header('Content-Type: text/html; charset=UTF-8');
             <nav class="menu-principal" id="navigation">
                 <!-- Menu Superior -->
                 <ul class="menu">
-                    <li class="item m-mobilef sub"><button type="button" id="menu-inferior" class=""><img src="img/iconos/menu.png" alt="search"></button></li>
+                    <li class="item m-mobilef sub"><button type="button" id="menu-inferior" class=""><img src="/img/iconos/menu.png" alt="search"></button></li>
                     <li class="submenu">
                         <ul>
-                            <li class="item m-mobilet sub"><button type="button" id="menu-lateral" class=""><span>Menú Activitat de l´Oficina</span><img src="img/iconos/menu.png" alt="search"></button></li>
+                            <li class="item m-mobilet sub"><button type="button" id="menu-lateral" class=""><span>Menú Activitat de l´Oficina</span><img src="/img/iconos/menu.png" alt="search"></button></li>
                             <li class="item m-mobilet item2"><a href="/esdeveniments">Esdeveniments</a></li>
                             <li class="item m-mobilet item2"><a href="#">Votacions</a></li>
                             <li class="item m-mobilet no-border item2"><a href="#">Usuaris</a></li>
@@ -66,7 +66,7 @@ header('Content-Type: text/html; charset=UTF-8');
                         <a href="#" class="calendario">Calendario</a>
                         <a href="#" class="fichero">Fichero</a>
                         <a href="#" class="configuracion">Configuracion</a>
-                        <a href="#" class="cierre">Cierre</a>
+                        <a href="/logout" class="cierre">Cierre</a>
                     </div>
                 </div>
             </div>
@@ -144,9 +144,9 @@ header('Content-Type: text/html; charset=UTF-8');
                                         <!--Fin Caja de Accesos directos-->
                                         <!--Banners-->
                                         <section class="banners">
-                                            <a href="#" class="enl-banner"><img src="img/banners/b1.jpg" alt="Banner1" class="banner"></a>
-                                            <a href="#" class="enl-banner"><img src="img/banners/b2.jpg" alt="Banner2" class="banner"></a>
-                                            <a href="#" class="enl-banner"><img src="img/banners/b3.jpg" alt="Banner3" class="banner"></a>
+                                            <a href="#" class="enl-banner"><img src="/img/banners/b1.jpg" alt="Banner1" class="banner"></a>
+                                            <a href="#" class="enl-banner"><img src="/img/banners/b2.jpg" alt="Banner2" class="banner"></a>
+                                            <a href="#" class="enl-banner"><img src="/img/banners/b3.jpg" alt="Banner3" class="banner"></a>
                                         </section>
                                         <!--Fin Banners-->
                                     <!--Fin Columna de Contenido Derecha-->

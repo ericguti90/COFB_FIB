@@ -102,14 +102,23 @@ class EsdevenimentController extends Controller
         $esdeveniment=Esdeveniment::find($id);
  
         // Si no existe ese fabricante devolvemos un error.
-        if (!$esdeveniment)
-        {
-            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
-            // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
-            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un esdeveniment con ese código.'])],404);
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api') {
+            if (!$esdeveniment)
+            {
+                // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
+                // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
+                return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un esdeveniment con ese código.'])],404);
+            }
+     
+            return response()->json(['status'=>'ok','data'=>$esdeveniment],200);
         }
- 
-        return response()->json(['status'=>'ok','data'=>$esdeveniment],200);
+        else {
+            $assistents = $esdeveniment->assistents()->select('id','usuari','assistit','dataHora','delegat')->get();
+            $votacions = $esdeveniment->votacions()->select('id','titol','dataHoraIni','dataHoraFin')->get();;
+            $esdeveniment->assistents = $assistents;
+            $esdeveniment->votacions = $votacions;
+            return view('esdevenimentLayouts.show')->with("esd",$esdeveniment);
+        }
     }
 
     /**

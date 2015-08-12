@@ -51,4 +51,12 @@ class Votacio extends Model
 		// $this hace referencia al objeto que tengamos en ese momento de Votacio.
 		return $this->hasMany('App\Resposta');
 	}
+
+	// Relación de Votacio con VotacioAssistent:
+	public function assistents()
+	{
+		// 1 Votacio tiene muchas Assistent
+		// $this hace referencia al objeto que tengamos en ese momento de Votacio.
+		return $this->hasMany('App\VotacioAssistent');
+	}
 }
