@@ -13,33 +13,92 @@
 
 
 @section('contenido')
-<a href="#">
-	<h5 class="titulo-estrella has-sub" style= "background: url('../img/iconos/arrow-left.png') no-repeat 98% center;" onclick="assistents(1)">SCS</h5>
-	<h5 class="titulo-estrella has-sub" style= "background: url('../img/iconos/arrow-left.png') no-repeat 98% center;" onclick="assistents()">SCS</h5>
-</a>
+
+	<a href="#"><h5 id="primer" class="titulo-estrella has-sub" style= "background: url('../img/iconos/arrow-left.png') no-repeat 98% center;" >Votacions</h5></a>
+	<div id="primerIN" style="display:none;">
+		@foreach($esd->votacions as $item)
+		{{$item}}
+		@endforeach
+		@if($esd->votacions->lastPage()>1)
+			<section class="pag-revistas clearfix">
+				<h3 class="left">Mostrar</h3>
+				
+				<ul class="paginador-results numerico right">
+					<li style="display: inline-block;"><a href="/esdeveniments/{{$esd->id}}?page=1">Primera</a></li>
+					@for($i=1;$i<=$esd->votacions->lastPage();++$i)
+					<li style="display: inline-block;"><a href="/esdeveniments/{{$esd->id}}?page={{$i}}">{{$i}}</a></li>
+					@endfor
+					<li style="display: inline-block;"><a href="/esdeveniments/{{$esd->id}}?page={{$esd->votacions->lastPage()}}">última</a></li>
+				</ul>
+			</section>
+		@endif
+	</div>
+	<a href="#"><h5 id="segon" class="titulo-estrella has-sub" style= "background: url('../img/iconos/arrow-left.png') no-repeat 98% center;">Assistents</h5></a>
+	<div id="segonIN" style="display:none;">
+		@foreach($esd->assistents as $item)
+		{{$item}}
+		@endforeach
+		@if($esd->assistents->lastPage()>1)
+			<section class="pag-revistas clearfix">
+				<h3 class="left">Mostrar</h3>
+				
+				<ul class="paginador-results numerico right">
+					<li style="display: inline-block;"><a href="/esdeveniments/{{$esd->id}}?page=1">Primera</a></li>
+					@for($i=1;$i<=$esd->assistents->lastPage();++$i)
+					<li style="display: inline-block;"><a href="/esdeveniments/{{$esd->id}}?page={{$i}}">{{$i}}</a></li>
+					@endfor
+					<li style="display: inline-block;"><a href="/esdeveniments/{{$esd->id}}?page={{$esd->assistents->lastPage()}}">última</a></li>
+				</ul>
+			</section>
+		@endif
+	</div>
 
 
 
-@stop 
+
+
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
 
-function assistents() {
+$('#primer').click(function()
+{
+  // do my image switching logic here.
+//alert($(this).css);
+	if (!$(this).hasClass("active")) {
+	    $(this).addClass("active");
+  		$(this).css("background-Image", "url('../img/iconos/arrow-down-a.png')");
+  		$('#primerIN').slideDown('normal',fakeCombo());
+  	} else {
+  		$('.titulo-estrella').removeClass("active");
+  		$(this).css("background-Image", "url('../img/iconos/arrow-left.png')");
+  		$('#primerIN').slideUp('normal',fakeCombo());
+  	}
+
+});
+$('#segon').click(function()
+{
+  // do my image switching logic here.
+//alert($(this).css);
+	if (!$(this).hasClass("active")) {
+	    $(this).addClass("active");
+  		$(this).css("background-Image", "url('../img/iconos/arrow-down-a.png')");
+  		$('#segonIN').slideDown('normal',fakeCombo());
+  	} else {
+  		$('.titulo-estrella').removeClass("active");
+  		$(this).css("background-Image", "url('../img/iconos/arrow-left.png')");
+  		$('#segonIN').slideUp('normal',fakeCombo());
+  	}
+
+});
+
+
 	
 
-		if (!$('.titulo-estrella').hasClass("active")) {
-	        $('.titulo-estrella').addClass("active");
-	        $('.titulo-estrella').css = ("background-image", "url('../img/iconos/arrow-down-a.png')");
-	        //$('.titulo-estrella').setAttribute = ('style',"background: url('../img/iconos/arrow-down-a.png') no-repeat 98% center;");
-    		//$(this).children("ul").slideDown('normal', fakeCombo());
-		} else {
-	        $('.titulo-estrella').removeClass("active");
-	        $('.titulo-estrella').css = ("background-image", "url('../img/iconos/arrow-left.png')");
-	        $('.titulo-estrella').setAttribute = ('style',"background: url('../img/iconos/arrow-left.png')");
-   			//$(this).children("ul").slideUp('normal', fakeCombo());
-		}
-}
+
+
 
 </script>
+
+@stop 

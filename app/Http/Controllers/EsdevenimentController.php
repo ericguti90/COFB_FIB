@@ -113,8 +113,8 @@ class EsdevenimentController extends Controller
             return response()->json(['status'=>'ok','data'=>$esdeveniment],200);
         }
         else {
-            $assistents = $esdeveniment->assistents()->select('id','usuari','assistit','dataHora','delegat')->get();
-            $votacions = $esdeveniment->votacions()->select('id','titol','dataHoraIni','dataHoraFin')->get();;
+            $assistents = $esdeveniment->assistents()->select('id','usuari','assistit','dataHora','delegat')->paginate(1);
+            $votacions = $esdeveniment->votacions()->select('id','titol','dataHoraIni','dataHoraFin')->paginate(1);
             $esdeveniment->assistents = $assistents;
             $esdeveniment->votacions = $votacions;
             return view('esdevenimentLayouts.show')->with("esd",$esdeveniment);
