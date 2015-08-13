@@ -17,6 +17,8 @@
           <script src="js/varios-ie8.js"></script>
           <link rel="stylesheet" href="css/fs_ie8.css" />
         <![endif]-->
+        <!-- Latest compiled and minified CSS -->
+
         <?php
 header('Content-Type: text/html; charset=UTF-8'); 
 ?>

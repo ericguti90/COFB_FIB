@@ -47,7 +47,7 @@ class EsdevenimentController extends Controller
      */
     public function create()
     {
-        //
+        return view('esdevenimentLayouts.create');
     }
 
     /**
@@ -113,10 +113,10 @@ class EsdevenimentController extends Controller
             return response()->json(['status'=>'ok','data'=>$esdeveniment],200);
         }
         else {
-            $assistents = $esdeveniment->assistents()->select('id','usuari','assistit','dataHora','delegat')->paginate(1);
-            $votacions = $esdeveniment->votacions()->select('id','titol','dataHoraIni','dataHoraFin')->paginate(1);
-            $esdeveniment->assistents = $assistents;
+            $votacions = $esdeveniment->votacions()->select('id','titol','dataHoraIni','dataHoraFin')->get();
             $esdeveniment->votacions = $votacions;
+            $num = $esdeveniment->assistents()->count();
+            $esdeveniment->num = $num;
             return view('esdevenimentLayouts.show')->with("esd",$esdeveniment);
         }
     }

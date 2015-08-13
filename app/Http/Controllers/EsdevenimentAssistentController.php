@@ -26,16 +26,23 @@ class EsdevenimentAssistentController extends Controller
         // Devolverá todos los assistents.
         //return "Mostrando los aviones del fabricante con Id $idFabricante";
         $esdeveniment=Esdeveniment::find($idEsdeveniment);
- 
-        if (! $esdeveniment)
-        {
-            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
-            // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
-            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un esdeveniment con ese código.'])],404);
+        
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api') {
+            if (! $esdeveniment)
+            {
+                // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
+                // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
+                return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un esdeveniment con ese código.'])],404);
+            }
+     
+            return response()->json(['status'=>'ok','data'=>$esdeveniment->assistents()->get()],200);
+            //return response()->json(['status'=>'ok','data'=>$fabricante->aviones],200);
         }
- 
-        return response()->json(['status'=>'ok','data'=>$esdeveniment->assistents()->get()],200);
-        //return response()->json(['status'=>'ok','data'=>$fabricante->aviones],200);
+        else {
+            $assistents = $esdeveniment->assistents()->paginate(5);
+            $assistents->id =$idEsdeveniment;
+            return view('assistentLayouts.index')->with("assistents",$assistents);
+        }
     }
 
     /**
