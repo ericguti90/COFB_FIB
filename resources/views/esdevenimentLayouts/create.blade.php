@@ -42,22 +42,22 @@
 				<h3>DADES ESDEVENIMENT</h3>
 				<div class="row">
 					<div class="column-form large-2">
-						<label for="nombre">Nom esdeveniment</label>
-						<input type="text" id="nombre" required="">
+						<label for="name">Nom esdeveniment</label>
+						<input type="text" id="name" required="">
 					</div>
 					<div class="column-form med-2 margin-t-n">
-						<label for="seg-cognom">Data i hora</label>
-						<input id="seg-cognom" type="text" placeholder="AAAA-MM-DD HH:MM:SS">
+						<label for="data">Data i hora</label>
+						<input id="data" type="text" placeholder="AAAA-MM-DD HH:MM:SS">
 					</div>
 				</div>
 				<div class="row">		
 					<div class="column-form large-2 margin-t-s">	
-						<label for="dni">Lloc esdeveniment</label>
-						<input type="text" id="dni" required="">
+						<label for="lloc">Lloc esdeveniment</label>
+						<input type="text" id="lloc" required="">
 					</div>
 					<div class="column-form med-2 margin-t-n" style="padding-top: 30px;">	
-						<input type="checkbox" id="aviso">
-						<label for="aviso" class="aviso">Inscripció oberta</label>
+						<input type="checkbox" id="oberta">
+						<label for="oberta" class="aviso">Inscripció oberta</label>
 					</div>
 				</div>
 			</fieldset>
@@ -166,9 +166,9 @@
 $(document).ready(function(){
   $('#next').click(function(){            
     $.ajax({
-      url: '/esdeveniments',
+      url: '/esdeveniments/ajax',
       type: "post",
-      //data: {'username':$('input[name=username]').val(),'password':$('input[name=password]').val()},
+      data: {'name':$('input[id=name]').val(),'data':$('input[id=data]').val(),'lloc':$('input[id=lloc]').val(),'oberta':$('input[id=oberta]')[0].checked},
       success: function(data){
         alert(data);
         }

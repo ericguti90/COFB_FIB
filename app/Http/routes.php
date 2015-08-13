@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::post('/esdeveniments/ajax', 'AjaxController@postEsdeveniment');
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,7 +44,6 @@ Route::resource('votacions.preguntes.respostes','PreguntaRespostaController');
 Route::resource('users','UsersController');
 // Creamos un Controlador para gestionar la autenticación en HomeController.
 Route::controller('/','HomeController');
-
 
 
 /*+--------+----------+------------------------------------------------------------------------+---------------------------------------+--------------------------------------------------------------+------------+
