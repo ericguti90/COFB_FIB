@@ -5,6 +5,7 @@ use Request;
 use Input;
 use DateTime;
 use App\Esdeveniment;
+use App\Assistent;
  
 class AjaxController extends Controller {
  
@@ -38,6 +39,19 @@ class AjaxController extends Controller {
 
 	public function postAssistents()
 	{
-		print_r(Request::all());
+		$assistent = Request::input('arr');
+		foreach ($assistent as $ass) {
+			$result=Assistent::where('esdeveniment_id', '=', Request::input('id'))->where('usuari', '=', $ass)->get();
+ 			if($result->isEmpty()) {
+ 				$nouAss = array('usuari'=>$ass);
+ 				$nouAss = array_add($nouAss,'assistit',false);
+ 				$nouAss = array_add($nouAss,'delegat',false);
+ 				$nouAss = array_add($nouAss,'esdeveniment_id',Request::input('id'));
+ 				$formato = 'Y-m-d H:i:s';
+ 				$fecha = DateTime::createFromFormat($formato, "0-0-0 0:0:0");
+ 				$nouAss = array_add($nouAss,'dataHora',$fecha);
+ 				$nouAssistent = Assistent::create($nouAss);
+ 			}
+		}
 	}
 }

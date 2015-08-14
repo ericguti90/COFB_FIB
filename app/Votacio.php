@@ -33,7 +33,7 @@ class Votacio extends Model
 	{
 		// 1 Votació tiene 0..1 Esdeveniment
 		// $this hace referencia al objeto que tengamos en ese momento de Votacio.
-		return $this->belongsTo('App\Esdeveniment');
+		return $this->belongsTo('App\Esdeveniment','esdeveniment_id');
 	}
 
 	// Relación de Votacio con Pregunta:

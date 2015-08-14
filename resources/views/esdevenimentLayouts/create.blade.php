@@ -15,20 +15,35 @@
 @section('contenido')
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
-	var esd;
+	var esd = 1;
 	var i = 1;
 	var arr = {};
+	function votacions(){
+		if($('input[id=aviso]')[0].checked) $(location).attr('href', '/votacions/create');
+		else $(location).attr('href', '/esdeveniments/'+esd);
+	};
+
 	function assistents(){
 		for(var j = 1; j <= i; j++) {
 			arr[j] = $('input[id=ass-'+j+']').val();
 	      };
+	    send = {'id' : 1};
+	    send['arr']= arr;
 		$.ajax({
 	      url: '/assistents/ajax',
 	      type: "post",
 	      //var arr = new Array();
-	      data: arr,
+	      data: send,
 	      success: function(data){
-	      	alert(data);
+	      	$('.borde-azul').css("display","none");
+	      	$('.borde-naranja').css("display","inherit");
+	      	$('#tab2').removeClass('current active'); 
+	        $('#tab3').addClass('current active');
+	        $('.warning').css("display","inherit");
+	        $('#warning').html('Es pot afegir una votació nova en qualsevol moment més endavant.');
+	        $('#pas').html('Pas 3 de 3');
+	        $('#next').attr('value',"Continuar | Sortir");
+	        $('#next').attr('onclick',"votacions()");
       	  }
         });
 	}
@@ -113,7 +128,7 @@
 					</div>
 				</div>
 			</fieldset>
-			<fieldset class="borde-azul">
+			<fieldset class="borde-azul" style="display:none;">
 				<h3>ASSISTENTS AL ESDEVENIMENT</h3>
 				<div id="assistents">
 					<div class="row">
@@ -126,78 +141,18 @@
 					</div>	
 				</div>	
 			</fieldset>
-			<!--<fieldset class="borde-amarillo">
-				<h3>ADREÇA PERSONAL</h3>
-				<div class="row">
-					<div class="column-form med-2">
-						<label for="tipo-via">Tipus de Vía</label>
-							<dl class="dropdown" id="tipo-via">
-							    <dt><a href="#"><span>Elige</span></a></dt>
-							    <dd>
-							        <ul>
-							            <li><a href="#">Carrer</a></li>
-							            <li><a href="#">Vía</a></li>
-							            <li><a href="#">Avenida</a></li>
-							        </ul>
-							    </dd>
-							</dl>
-					</div>
-					<div class="column-form large-2">
-						<label for="adresa">Adresa</label>
-						<input id="adresa" type="text">
-					</div>
-				</div>
-				<div class="row">
-					<div class="column-form med-2"> 
-						<label for="num">Número</label>
-						<input id="num" type="text">
-					</div>
-					<div class="column-form med-2">	
-						<label for="pis">Pis</label>
-						<input id="pis" type="text">
-					</div>
-					<div class="column-form med-2 margin-t-n">	
-						<label for="portal">Porta</label>
-						<input id="portal" type="text">
-					</div>			
-				</div>	
-				<div class="row">
-					<div class="column-form med-2 margin-t-s">	
-						<label for="escala">Escala</label>
-						<input id="escala" type="text">
-					</div>
-					<div class="column-form med-2 margin-t-n">		
-						<label for="cp">CP</label>
-						<input id="cp" type="text">
-					</div>
-					<div class="column-form med-2">	
-						<label for="municipi">Municipi</label>
-						<input id="municipi" type="text">
-					</div>	
-				</div>
-				<div class="row">
-					<div class="column-form med-2">		
-						<label for="pob">Poblacó</label>
-						<input id="pob" type="text">
-					</div>	
-					<div class="column-form med-2">								
-						<label for="prov">Provincia</label>
-						<input id="prov" type="text">
-					</div>	
-				</div>
-			</fieldset>-->
-			<!--<div class="warning">
-					<h4>important !</h4>
-					<p>Si alguna de les dades “no modificables” no és correcta, comuniqui-ho al Colžlegi per telèfon: <b>932440711</b> o per mail: <b>secretaria@cofb.net</b> i l’informarem del procediment a seguir per corregir-les.</p>
-			</div>
-			<p>En fer clic en “MODIFICAR LES DADES” acceptes haver llegit i estar d’acord amb la Política de Privacitat</p>-->
+			<fieldset class="borde-naranja" style="display:none;">
+				<h3>VOTACIONS DEL ESDEVENIMENT</h3>
+				<input type="checkbox" id="aviso"><label for="aviso" class="aviso">Desitjo afegir un nova votació a l'esdeveniment creat.</label>
+			</fieldset>
+			
 			<div class="warning">
 				<h4>important !</h4>
-				<p>Si no s'indica el lloc de l'esdeveniment, s'establirà que l'esdeveniment no és presencial.</p>
+				<p id="warning">Si no s'indica el lloc de l'esdeveniment, s'establirà que l'esdeveniment no és presencial.</p>
 			</div>
 			<div class="relative">
 				<div class="left">
-					<input class="btn btn-naranja" type="button" value="Guardar | Continuar" id="next" onClick="assistents()">
+					<input class="btn btn-naranja" type="button" value="Guardar | Continuar" id="next" onClick="esdeveniment()">
 				</div>
 				<div class="right">
 					<a href="#" class="btn-steps right" id="pas">Pas 1 de 3</a>

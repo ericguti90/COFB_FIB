@@ -25,7 +25,21 @@ class VotacioController extends Controller
      */
     public function index()
     {
-        return response()->json(['status'=>'ok','data'=>Votacio::all()], 200);
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api') {
+            return response()->json(['status'=>'ok','data'=>Votacio::all()], 200);
+        }
+        else {
+            $vota = Votacio::orderBy('dataHoraFin','desc')->get();//->paginate(5);
+            foreach ($vota as $item) {
+                $assistents = $item->assistents()->count();
+                $esd = $item->esdeveniments()->select('titol')->get();
+                $preguntes = $item->preguntes()->count();
+                $item->ass = $assistents;
+                $item->esd = $esd;
+                $item->preguntes = $preguntes;
+            }
+            return view('votacioLayouts.index')->with("vota",$vota);
+        }
     }
 
     /**
