@@ -11,6 +11,7 @@
 |
 */
 Route::post('/esdeveniments/ajax', 'AjaxController@postEsdeveniment');
+Route::post('/assistents/ajax', 'AjaxController@postAssistents');
 
 Route::get('/', function () {
     return view('welcome');

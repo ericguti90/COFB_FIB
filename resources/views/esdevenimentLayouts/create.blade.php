@@ -13,22 +13,72 @@
 
 
 @section('contenido')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	var esd;
+	var i = 1;
+	var arr = {};
+	function assistents(){
+		for(var j = 1; j <= i; j++) {
+			arr[j] = $('input[id=ass-'+j+']').val();
+	      };
+		$.ajax({
+	      url: '/assistents/ajax',
+	      type: "post",
+	      //var arr = new Array();
+	      data: arr,
+	      success: function(data){
+	      	alert(data);
+      	  }
+        });
+	}
 
+	function nouAssistent(elem){
+		$(elem).parent().css("display","none");
+		++i;
+	  	$("#assistents").prepend("<div class='row'><div class='column-form large-2 margin-t-s'><input type='text' id='ass-"+ i +"' style='margin-left: 55px;'></div><div style='float: right; margin-top: 6px; margin-right: 57px;'><a href='#' class='ver-mas-enlace' onClick='nouAssistent(this)'>Afegir més</a></div></div>");
+	};
+	function esdeveniment(){
+	  	$('input[id=name]').removeClass('error');
+	  	$('input[id=data]').removeClass('error'); 
+	  	$("#nameError").css("display","none");
+	  	$("#dataError").css("display","none");             
+	    $.ajax({
+	      url: '/esdeveniments/ajax',
+	      type: "post",
+	      data: {'name':$('input[id=name]').val(),'data':$('input[id=data]').val(),'lloc':$('input[id=lloc]').val(),'oberta':$('input[id=oberta]')[0].checked},
+	      success: function(data){
+	        if(data=="falta name") {$('input[id=name]').addClass('error');$("#nameError").css("display","inherit");}
+	        else if(data=="falta data") {$('input[id=data]').addClass('error');$("#dataError").css("display","none");}
+	        else {
+	        	$('.borde-verde').css("display","none");
+	        	$('.borde-azul').css("display","inherit");
+	        	$('#tab1').removeClass('current active'); 
+	        	$('#tab2').addClass('current active');
+	        	$('.warning').css("display","none");
+	        	$esd=data;
+	        	$('#pas').html('Pas 2 de 3');
+	        	$('#next').attr('onclick',"assistents()");
+	        }
+      	  }
+        });
+	};
+</script>
 <form action="" id="form-activ-collegial">
 	<ul id="section-tabs">
-	<li class="current active arrowright">
+	<li class="current active arrowright" id="tab1">
 		<div class="content-datos">
 			<div class="tab-personales">Dades esdeveniment</div>
 			<div class="datos-numero">1
 		</div>	
 	</div></li>
-	<li class=" arrowright">
+	<li class=" arrowright" id="tab2">
 		<div class="content-datos">
 			<div class="tab-publiques">Dades assistents</div>
 			<div class="datos-numero">2</div>
 		</div>	
 	</li>
-		<li class="arrowright">
+		<li class="arrowright" id="tab3">
 			<div class="content-datos">
 				<div class="tab-altres-dades">Dades votacions</div>
 				<div class="datos-numero">3</div>
@@ -44,10 +94,12 @@
 					<div class="column-form large-2">
 						<label for="name">Nom esdeveniment</label>
 						<input type="text" id="name" required="">
+						<div id="nameError"class="errores" style="display:none">El nom del esdeveniment no es valid</div>
 					</div>
 					<div class="column-form med-2 margin-t-n">
 						<label for="data">Data i hora</label>
 						<input id="data" type="text" placeholder="AAAA-MM-DD HH:MM:SS">
+						<div id="dataError" class="errores" style="display:none">La data no es valida</div>
 					</div>
 				</div>
 				<div class="row">		
@@ -61,23 +113,19 @@
 					</div>
 				</div>
 			</fieldset>
-			<!--<fieldset class="borde-azul">
-				<h3>TELÈFONS PERSONALS</h3>
-				<div class="row">
-					<div class="column-form med-2">	
-						<label for="tel-1">Telefon 1</label>
-						<input id="tel-1" type="text">
-					</div>
-					<div class="column-form med-2">	
-						<label for="tel-2">Telefon 2</label>
-						<input id="tel-2" type="text">
-					</div>
-					<div class="column-form med-2 margin-t-n">	
-						<label for="tel-1">Fax</label>
-						<input id="tel-2" type="text">
-					</div>
-				</div>		
-			</fieldset>-->
+			<fieldset class="borde-azul">
+				<h3>ASSISTENTS AL ESDEVENIMENT</h3>
+				<div id="assistents">
+					<div class="row">
+						<div class="column-form large-2 margin-t-s">	
+							<input id="ass-1" type="text" style="margin-left: 55px;">
+						</div>
+						<div style="float: right; margin-top: 6px; margin-right: 57px;">
+							<a href="#" class="ver-mas-enlace" onClick="nouAssistent(this)">Afegir més</a>
+						</div>
+					</div>	
+				</div>	
+			</fieldset>
 			<!--<fieldset class="borde-amarillo">
 				<h3>ADREÇA PERSONAL</h3>
 				<div class="row">
@@ -149,35 +197,14 @@
 			</div>
 			<div class="relative">
 				<div class="left">
-					<input class="btn btn-naranja" type="button" value="Guardar | Continuar" id="next">
+					<input class="btn btn-naranja" type="button" value="Guardar | Continuar" id="next" onClick="assistents()">
 				</div>
 				<div class="right">
-					<a href="#" class="btn-steps right">Pas 1 de 3</a>
+					<a href="#" class="btn-steps right" id="pas">Pas 1 de 3</a>
 				</div>
 			</div>
 		</div>
 	</div>			
 </form>
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript">
-
-$(document).ready(function(){
-  $('#next').click(function(){            
-    $.ajax({
-      url: '/esdeveniments/ajax',
-      type: "post",
-      data: {'name':$('input[id=name]').val(),'data':$('input[id=data]').val(),'lloc':$('input[id=lloc]').val(),'oberta':$('input[id=oberta]')[0].checked},
-      success: function(data){
-        alert(data);
-        }
-    }); 
-    //$('.next').unbind(); //unbind. to stop multiple form submit.     
-  }); 
-});
-
-
-</script>
 
 @stop

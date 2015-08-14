@@ -3,6 +3,8 @@ use Auth;
 use Redirect;
 use Request;
 use Input;
+use DateTime;
+use App\Esdeveniment;
  
 class AjaxController extends Controller {
  
@@ -10,27 +12,32 @@ class AjaxController extends Controller {
 	// Al recibir los datos del formulario de Login.
 	public function postEsdeveniment()
 	{
-		$input = Input::all();
+		// Primero comprobaremos si estamos recibiendo todos los campos.
+        if (!Request::input('name')) print_r("falta name");
+        else if (!Request::input('data')) print_r("falta data");
+ 		else {
+ 			$esdeveniment=Esdeveniment::where('titol', '=', Request::input('name'))->get();
+ 			if($esdeveniment != "[]") print_r("falta name");
+ 			else {
+	 			$esd = array('titol'=>Request::input('name'));
+	 			$esd = array_add($esd,'lloc',Request::input('lloc'));
+	 			$formato = 'Y-m-d H:i:s';
+	        	$fecha = DateTime::createFromFormat($formato, Request::input('data'));
+	        	if(!$fecha) {print_r("data incorrecta");die;}
+	        	$esd = array_add($esd,'dataHora',$fecha);
+	        	if(Request::input('oberta') == "false") $esd = array_add($esd,'inscripcioOberta',false);
+	        	else $esd = array_add($esd,'inscripcioOberta', true);
+	        	if(Request::input('lloc') == "") $esd = array_add($esd,'presencial', true);
+	        	else $esd = array_add($esd,'presencial', false);
+	        	//print_r($esd);die;
+	        	$nouEsdeveniment=Esdeveniment::create($esd);
+	        	print_r($nouEsdeveniment->id);
+	        }
+ 		}
+	}
 
-		if(array_get($input, 'lloc') == "") print_r("buit");die;
-		print_r($input);die;
-		$credenciales=array(
-				'username'=>Request::input('username'),
-				'password'=>Request::input('password')
-				);
-		// Getting all post data
-    	if(Request::ajax()) {
-	      	//$data = Input::all();
-      		if (Auth::attempt($credenciales,1)) {
-
-      			print_r('success');
-      			//die;
-      		}
-			else {print_r('error');}
-    		//print_r('error');die;
-      		//if(array_get($data, 'username') === "ericguti") print_r(array_get($data, 'username'));
-      		//else print_r(array_get($data, 'password'));
-      		//print_r($data);die;     			
-      	}
+	public function postAssistents()
+	{
+		print_r(Request::all());
 	}
 }
