@@ -12,7 +12,7 @@
 */
 Route::post('/esdeveniments/ajax', 'AjaxController@postEsdeveniment');
 Route::post('/assistents/ajax', 'AjaxController@postAssistents');
-
+Route::get('/votacions/{votacions}/assistents', 'VotacioController@assistents');
 Route::get('/', function () {
     return view('welcome');
 });

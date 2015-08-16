@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 // Necesitaremos el modelo Fabricante para ciertas tareas.
 use App\Votacio;
 use App\Esdeveniment;
+use App\VotacioAssistent;
 
 
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
@@ -29,10 +30,10 @@ class VotacioController extends Controller
             return response()->json(['status'=>'ok','data'=>Votacio::all()], 200);
         }
         else {
-            $vota = Votacio::orderBy('dataHoraFin','desc')->get();//->paginate(5);
+            $vota = Votacio::orderBy('dataHoraFin','desc')->paginate(5);
             foreach ($vota as $item) {
                 $assistents = $item->assistents()->count();
-                $esd = $item->esdeveniments()->select('titol')->get();
+                $esd = $item->esdeveniments()->select('titol')->first();
                 $preguntes = $item->preguntes()->count();
                 $item->ass = $assistents;
                 $item->esd = $esd;
@@ -109,16 +110,25 @@ class VotacioController extends Controller
         // return "Se muestra Votacio con id: $id";
         // Buscamos una votacio por el id.
         $votacio=Votacio::find($id);
- 
-        // Si no existe esa votacio devolvemos un error.
-        if (!$votacio)
-        {
-            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
-            // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
-            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra una votacio con ese código.'])],404);
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api') {
+            // Si no existe esa votacio devolvemos un error.
+            if (!$votacio)
+            {
+                // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
+                // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
+                return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra una votacio con ese código.'])],404);
+            }
+     
+            return response()->json(['status'=>'ok','data'=>$votacio],200);
         }
- 
-        return response()->json(['status'=>'ok','data'=>$votacio],200);
+        else {
+            $esd = $item->esdeveniments()->select('titol')->first();
+            $votacio->esd = $esd;
+            $preguntes = $item->preguntes()->count();
+            $item->ass = $assistents;
+            $item->preguntes = $preguntes;
+            return view('votacioLayouts.index')->with("vota",$vota);
+        }
     }
 
     /**
@@ -255,5 +265,16 @@ class VotacioController extends Controller
         // Se usa el código 204 No Content – [Sin Contenido] Respuesta a una petición exitosa que no devuelve un body (como una petición DELETE)
         // Este código 204 no devuelve body así que si queremos que se vea el mensaje tendríamos que usar un código de respuesta HTTP 200.
         return response()->json(['code'=>204,'message'=>'Se ha eliminado el esdeveniment correctamente.'],204);
+    }
+
+    public function assistents($id) {
+        $votacio=Votacio::find($id);
+        $assistents = $votacio->assistents()->select('id')->get();//->paginate(5);
+        foreach ($assistents as $ass) {
+            //$ass = array_add($ass, 'result', VotacioAssistent::find($ass->id)->assistent()->get());
+            $ass->id = VotacioAssistent::find($ass->id)->assistent()->first();
+        }
+
+        return $assistents;
     }
 }

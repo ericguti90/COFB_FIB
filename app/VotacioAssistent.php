@@ -34,11 +34,11 @@ class VotacioAssistent extends Model
 	{
 		// 1 VotacioAssistent pertenece a un Assistent.
 		// $this hace referencia al objeto que tengamos en ese momento de VotacioAssistent.
-		return $this->belongsTo('App\Assistent');
+		return $this->belongsTo('App\Assistent','assistent_id');
 	}
 	
 	public function votacio()
 	{
-		return $this->belongsTo('App\Votacio');
+		return $this->belongsTo('App\Votacio','votacio_id');
 	}
 }
