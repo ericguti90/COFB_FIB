@@ -40,13 +40,11 @@
 
 	<a href="#"><h5 id="primer" class="titulo-estrella has-sub" style= "background: url('../img/iconos/arrow-left.png') no-repeat 98% center;" >Preguntes</h5></a>
 	<div id="primerIN" style="display:none;">
-		
 	@foreach($vota->preguntes as $preg)
 		<div class="column-cajas" style="width:100%;">	
 			<div class="caja-gris">
-				
 				<p style="padding-right: 110px;"><span class="titulo-listado">{{$preg->titol}}</span></p>
-<div style="float: right; margin-right: -7px; margin-top: -25px;">
+				<div style="float: right; margin-right: -7px; margin-top: -25px;">
 					<a href="#" class="ver-mas-enlace">Veure respostes</a>
 				</div>
 				<ul class="lista-enlaces">

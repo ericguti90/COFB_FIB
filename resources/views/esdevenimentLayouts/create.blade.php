@@ -27,7 +27,7 @@
 		for(var j = 1; j <= i; j++) {
 			arr[j] = $('input[id=ass-'+j+']').val();
 	      };
-	    send = {'id' : 1};
+	    send = {'id' : esd};
 	    send['arr']= arr;
 		$.ajax({
 	      url: '/assistents/ajax',
@@ -64,14 +64,14 @@
 	      data: {'name':$('input[id=name]').val(),'data':$('input[id=data]').val(),'lloc':$('input[id=lloc]').val(),'oberta':$('input[id=oberta]')[0].checked},
 	      success: function(data){
 	        if(data=="falta name") {$('input[id=name]').addClass('error');$("#nameError").css("display","inherit");}
-	        else if(data=="falta data") {$('input[id=data]').addClass('error');$("#dataError").css("display","none");}
+	        else if(data=="falta data") {$('input[id=data]').addClass('error');$("#dataError").css("display","inherit");}
 	        else {
 	        	$('.borde-verde').css("display","none");
 	        	$('.borde-azul').css("display","inherit");
 	        	$('#tab1').removeClass('current active'); 
 	        	$('#tab2').addClass('current active');
 	        	$('.warning').css("display","none");
-	        	$esd=data;
+	        	esd=data;
 	        	$('#pas').html('Pas 2 de 3');
 	        	$('#next').attr('onclick',"assistents()");
 	        }
