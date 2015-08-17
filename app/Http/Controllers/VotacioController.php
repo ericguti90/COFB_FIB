@@ -50,7 +50,8 @@ class VotacioController extends Controller
      */
     public function create()
     {
-        //
+        $ini = Esdeveniment::select('titol')->orderBy('titol','asc')->get();      
+        return view('votacioLayouts.create')->with("ini",$ini);
     }
 
     /**
@@ -122,12 +123,12 @@ class VotacioController extends Controller
             return response()->json(['status'=>'ok','data'=>$votacio],200);
         }
         else {
-            $esd = $item->esdeveniments()->select('titol')->first();
+            $esd = $votacio->esdeveniments()->select('titol')->first();
             $votacio->esd = $esd;
-            $preguntes = $item->preguntes()->count();
-            $item->ass = $assistents;
-            $item->preguntes = $preguntes;
-            return view('votacioLayouts.index')->with("vota",$vota);
+            $preguntes = $votacio->preguntes()->get();
+            $votacio->preguntes = $preguntes;
+            $votacio->ass = $votacio->assistents()->count();
+            return view('votacioLayouts.show')->with("vota",$votacio);
         }
     }
 
@@ -269,12 +270,13 @@ class VotacioController extends Controller
 
     public function assistents($id) {
         $votacio=Votacio::find($id);
-        $assistents = $votacio->assistents()->select('id')->get();//->paginate(5);
+        $assistents = $votacio->assistents()->select('id')->paginate(5);
         foreach ($assistents as $ass) {
             //$ass = array_add($ass, 'result', VotacioAssistent::find($ass->id)->assistent()->get());
-            $ass->id = VotacioAssistent::find($ass->id)->assistent()->first();
+            $ass->ass = VotacioAssistent::find($ass->id)->assistent()->first();
         }
+        $assistents->id=$id;
 
-        return $assistents;
+        return view('assistentLayouts.index2')->with("ass",$assistents);
     }
 }

@@ -65,7 +65,7 @@
 				<p><b>Data i hora inici:</b>   {{$item->dataHoraIni}}</p>
 				<p><b>Data i hora fin:</b>    {{$item->dataHoraFin}}</p>	
 			</div>
-			<div style="margin-top:-8px; float: right;"><a class="btn btn-naranja ver_mas" href="/esdeveniments/{{$item->id}}">VEURE MÉS</a></div>
+			<div style="margin-top:-8px; float: right;"><a class="btn btn-naranja ver_mas" href="/votacions/{{$item->id}}">VEURE MÉS</a></div>
 	</div>
 @endforeach
 </ul>
