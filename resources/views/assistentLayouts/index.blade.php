@@ -35,7 +35,7 @@ header('Content-Type: text/html; charset=UTF-8');
 			<p><b>Delegat:</b>   @if($item->delegat) Sí @else No @endif</p>
 			
 			</div>
-			<div style="padding-top: 12px; float: right;"><a class="btn btn-naranja ver_mas" href="/esdeveniments/{{$item->id}}">VEURE MÉS</a></div>
+			<div style="padding-top: 12px; float: right;"><a class="btn btn-naranja ver_mas" href="/assistents/{{$item->id}}" target="_parent">VEURE MÉS</a></div>
 	</div>
 	@endforeach
 </ul>

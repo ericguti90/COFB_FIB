@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 // Necesitaremos el modelo Fabricante para ciertas tareas.
 use App\Votacio;
 use App\Resposta;
+use App\Assistent;
+use App\Pregunta;
 
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
 use Response;
@@ -27,23 +29,32 @@ class PreguntaRespostaController extends Controller
         // Devolverá todos las preguntas.
         //return "Mostrando los aviones del fabricante con Id $idFabricante";
         $votacio=Votacio::find($idVotacio);
- 
-        if (! $votacio)
-        {
-            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
-            // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
-            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un votacio con ese código.'])],404);
-        }
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api') {
+            if (! $votacio)
+            {
+                // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
+                // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
+                return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un votacio con ese código.'])],404);
+            }
 
-        $pregunta=$votacio->preguntes()->find($idPregunta);
-        if (! $pregunta)
-        {
-            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
-            // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
-            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra una pregunta con ese código.'])],404);
+            $pregunta=$votacio->preguntes()->find($idPregunta);
+            if (! $pregunta)
+            {
+                // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
+                // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
+                return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra una pregunta con ese código.'])],404);
+            }
+            return response()->json(['status'=>'ok','data'=>$pregunta->respostes()->get()],200);
+            //return response()->json(['status'=>'ok','data'=>$fabricante->aviones],200);
         }
-        return response()->json(['status'=>'ok','data'=>$pregunta->respostes()->get()],200);
-        //return response()->json(['status'=>'ok','data'=>$fabricante->aviones],200);
+        else {
+            $respostes="";
+            if($votacio) {
+                $pregunta=$votacio->preguntes()->find($idPregunta);
+                if($pregunta) $respostes=$pregunta->respostes()->orderBy('dataHora','desc')->paginate(1);
+            }
+            return view('preguntaRespostaLayouts.show')->with("votacio",$votacio)->with("pregunta",$pregunta)->with("respostes",$respostes);
+        }
     }
 
     /**
@@ -210,5 +221,27 @@ class PreguntaRespostaController extends Controller
         // Se usa el código 204 No Content – [Sin Contenido] Respuesta a una petición exitosa que no devuelve un body (como una petición DELETE)
         // Este código 204 no devuelve body así que si queremos que se vea el mensaje tendríamos que usar un código de respuesta HTTP 200.
         return response()->json(['code'=>204,'message'=>'Se ha eliminado la pregunta correctamente.'],204);
+    }
+
+    public function respostesAssistents($idVotacio, $idAssistent){
+        $assistent = Assistent::find($idAssistent);
+        $respostes = Resposta::where('usuari_id', '=', $assistent->usuari)->where('votacio_id', '=', $idVotacio)->get();
+        $votacio = Votacio::find($idVotacio);
+        //$result = array('votacio'=>$votacio->titol);
+        //$result = array_add($result,'usuari',$assistent->usuari);
+        //$i = 1;
+        //$pregResp = Array();
+        if($respostes->count() == $votacio->preguntes()->count()) $total = true;
+        else $total = false;
+        foreach ($respostes as $res) {
+            $pregunta = Pregunta::find($res->pregunta_id);
+            $res->pregunta = $pregunta->titol;
+            //$pregResp = array_add($pregResp,'pregunta'.$i,$res->resposta);
+            //$pregResp = array_add($pregResp,'resposta'.$i,$res->resposta);
+            //++$i;
+        }
+        //$result = array_add($result,'pregResp',$pregResp);
+
+        return view('respostaLayouts.show')->with("result",$respostes)->with("votacio", $votacio->titol)->with("usuari",$assistent->usuari)->with("total",$total);
     }
 }

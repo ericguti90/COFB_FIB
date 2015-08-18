@@ -42,10 +42,10 @@
 	<div id="primerIN" style="display:none;">
 	@foreach($vota->preguntes as $preg)
 		<div class="column-cajas" style="width:100%;">	
-			<div class="caja-gris">
+			<div class="caja-gris" style="border-radius: 14px;">
 				<p style="padding-right: 110px;"><span class="titulo-listado">{{$preg->titol}}</span></p>
 				<div style="float: right; margin-right: -7px; margin-top: -25px;">
-					<a href="#" class="ver-mas-enlace">Veure respostes</a>
+					<a href="/votacions/{{$vota->id}}/preguntes/{{$preg->id}}/respostes" class="ver-mas-enlace">Veure respostes</a>
 				</div>
 				<ul class="lista-enlaces">
 					@if($preg->opcions != "")

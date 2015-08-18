@@ -16,6 +16,8 @@ Route::post('/votacions/ajax', 'AjaxController@postVotacions');
 Route::get('/votacions/preassistents/ajax', 'AjaxController@getAssistents');
 Route::post('/votacions/assistents/ajax', 'AjaxController@postAssistentsVotacio');
 Route::post('/preguntes/ajax', 'AjaxController@postPreguntes');
+Route::get('/votacions/{votacions}/assistents/{assistents}', 'PreguntaRespostaController@respostesAssistents');
+//Route::get('/votacions/{votacions}/preguntes/{preguntes}', 'PreguntaRespostaController@respostesPreguntes');
 Route::get('/votacions/{votacions}/assistents', 'VotacioController@assistents');
 Route::get('/', function () {
     return view('welcome');
