@@ -44,7 +44,7 @@ header('Content-Type: text/html; charset=UTF-8');
                             <li class="item m-mobilet sub"><button type="button" id="menu-lateral" class=""><span>Menú Activitat de l´Oficina</span><img src="/img/iconos/menu.png" alt="search"></button></li>
                             <li class="item m-mobilet item2"><a href="/esdeveniments">Esdeveniments</a></li>
                             <li class="item m-mobilet item2"><a href="#">Votacions</a></li>
-                            <li class="item m-mobilet no-border item2"><a href="#">Usuaris</a></li>
+                            <li class="item m-mobilet no-border item2"><a href="#">Assistents</a></li>
                         </ul>
                     </li>
                     <li class="item home"><a id="inici" href="#" class=""><span class="menu_tab">Marcar com pàgina d'inici</span></a></li>

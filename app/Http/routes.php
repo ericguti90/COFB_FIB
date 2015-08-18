@@ -10,6 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/assistents', 'AssistentController@index');
+Route::get('/assistents/{assistents}', 'AssistentController@show');
 Route::post('/esdeveniments/ajax', 'AjaxController@postEsdeveniment');
 Route::post('/assistents/ajax', 'AjaxController@postAssistents');
 Route::post('/votacions/ajax', 'AjaxController@postVotacions');

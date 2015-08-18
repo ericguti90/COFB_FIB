@@ -51,7 +51,7 @@ class PreguntaRespostaController extends Controller
             $respostes="";
             if($votacio) {
                 $pregunta=$votacio->preguntes()->find($idPregunta);
-                if($pregunta) $respostes=$pregunta->respostes()->orderBy('dataHora','desc')->paginate(1);
+                if($pregunta) $respostes=$pregunta->respostes()->orderBy('dataHora','desc')->paginate(5);
             }
             return view('preguntaRespostaLayouts.show')->with("votacio",$votacio)->with("pregunta",$pregunta)->with("respostes",$respostes);
         }

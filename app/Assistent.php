@@ -34,7 +34,7 @@ class Assistent extends Model
 	{
 		// 1 Assistent pertenece a un Esdeveniment.
 		// $this hace referencia al objeto que tengamos en ese momento de Assistent.
-		return $this->belongsTo('App\Esdeveniment');
+		return $this->belongsTo('App\Esdeveniment','esdeveniment_id');
 	}
 
 	// Relación de Assistent con Resposta:

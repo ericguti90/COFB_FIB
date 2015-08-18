@@ -15,54 +15,50 @@
 <h3 class="titulo-contenido left no-bottom" style="width:100%;">{{$pregunta->titol}}</h3>
 </section>
 &nbsp;
+@if(!$respostes->isEmpty())
 <section class="listado-contenidos relative">
-	<h5 class="celeste-oscuro">Respostes a la pregunta</h5>
+	<h5 class="celeste-oscuro titulo-icono premsa">Respostes a la pregunta</h5>
+@else
+<section class="lc-naranja listado-contenidos">
+	<h5 class="orange titulo-icono legislacio">Respostes a la pregunta </h5>
+@endif
+	@if($respostes->lastPage()>1)
 	<div class="absolute pag-flechas">	
 		<a onclick="list(-1,{{$respostes->lastPage()}})" class="pag-izq-celeste left"></a>
 		<a onCLick="list(1, {{$respostes->lastPage()}})" class="pag-der-celeste left"></a>
 	</div>	
+	@endif
 	<ul class="lc-list">
-		@foreach ($respostes as $res)
+		@forelse ($respostes as $res)
 		<li>
 			<a>
 				<p><span class="fecha">{{$res->dataHora}}</span></p>
-				<p>{{$res->resposta}}. <b>{{$res->usuari_id}}</b></p>	
+				<p>{{$res->resposta}}. <i><b>{{$res->usuari_id}}</b></i></p>	
 			</a>	 
 		</li>
-		@endforeach
+		@empty
+		<li>
+			<a>
+				<p><span class="naranja">Encara no hi ha cap resposta per aquesta pregunta.</span></p>	
+			</a>	 
+		</li>
+		@endforelse
 	</ul>
 </section>
 
-
-
-@if($respostes->lastPage()>1)
-<section class="pag-revistas clearfix">
-	<h3 class="left">Mostrar</h3>
-	
-	<ul class="paginador-results numerico right">
-		<li style="display: inline-block;"><a href="?page=1">Primera</a></li>
-		@for($i=1;$i<=$respostes->lastPage();++$i)
-		<li style="display: inline-block;"><a href="?page={{$i}}">{{$i}}</a></li>
-		@endfor
-		<li style="display: inline-block;"><a href="?page={{$respostes->lastPage()}}">última</a></li>
-	</ul>
-</section>
-@endif
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
-	var posActual = 1;
+	var posActual = {{$respostes->currentPage()}};
 	function list(pos, max) {
-		alert(posActual);
 		posActual += pos;
-		alert(posActual);
-		alert(max);
 		if(posActual<1) posActual = max;
 		else if(posActual > max) posActual = 1;
 		window.location.replace("?page=".concat(posActual));
 	}
 </script>
 @stop
+
 
 
 

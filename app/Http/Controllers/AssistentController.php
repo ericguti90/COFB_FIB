@@ -18,7 +18,19 @@ class AssistentController extends Controller
      */
     public function index()
     {
-        return response()->json(['status'=>'ok','data'=>Assistent::all()], 200);
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api') {
+            return response()->json(['status'=>'ok','data'=>Assistent::all()], 200);
+        }
+        else{
+            //return Assistent::distinct()->select('usuari')->groupBy('usuari')->get();
+            $assistents = Assistent::select('usuari')->distinct('usuari')->paginate(5);
+            foreach ($assistents as $ass) {
+                $ass->esd = Assistent::where('usuari','=',$ass->usuari)->count();
+                $ass->assistit = Assistent::where('usuari','=',$ass->usuari)->where('assistit','=',true)->count();
+                $ass->id = Assistent::select('id')->where('usuari','=',$ass->usuari)->first();
+            }
+            return view('assistentLayouts.indexAll')->with('ass', $assistents);
+        }
     }
 
     /**
@@ -30,15 +42,30 @@ class AssistentController extends Controller
     public function show($id)
     {
         $assistent=Assistent::find($id);
- 
-        // Si no existe ese assistent devolvemos un error.
-        if (!$assistent)
-        {
-            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
-            // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
-            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un assistent con ese código.'])],404);
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api') {
+            // Si no existe ese assistent devolvemos un error.
+            if (!$assistent)
+            {
+                // Se devuelve un array errors con los errores encontrados y cabecera HTTP 404.
+                // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
+                return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un assistent con ese código.'])],404);
+            }
+     
+            return response()->json(['status'=>'ok','data'=>$assistent],200);
         }
- 
-        return response()->json(['status'=>'ok','data'=>$assistent],200);
+        else {
+            $assistents = Assistent::where('usuari','=',$assistent->usuari)->paginate(5);
+            foreach ($assistents as $ass) {
+                $ass->esd = $ass->esdeveniment()->select('titol')->first();
+                $votacions = $ass->votacions()->get();
+                $aux = array();
+                foreach ($votacions as $vota) {
+                    array_push($aux, $vota->votacio()->select('titol')->first());
+                }
+                $ass->vota = $aux;
+
+            }
+            return $assistents;
+        }
     }
 }
