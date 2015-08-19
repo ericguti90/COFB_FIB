@@ -52,11 +52,11 @@
 	<h3 class="left">Mostrar</h3>
 	
 	<ul class="paginador-results numerico right">
-		<li style="display: inline-block;"><a href="/esdeveniments?page=1">Primera</a></li>
+		<li style="display: inline-block;"><a href="/votacions?page=1">Primera</a></li>
 		@for($i=1;$i<=$vota->lastPage();++$i)
-		<li style="display: inline-block;"><a href="/esdeveniments?page={{$i}}">{{$i}}</a></li>
+		<li style="display: inline-block;"><a href="/votacions?page={{$i}}">{{$i}}</a></li>
 		@endfor
-		<li style="display: inline-block;"><a href="/esdeveniments?page={{$vota->lastPage()}}">última</a></li>
+		<li style="display: inline-block;"><a href="/votacions?page={{$vota->lastPage()}}">última</a></li>
 	</ul>
 </section>
 @endif

@@ -56,7 +56,7 @@ class AssistentController extends Controller
         else {
             $assistents = Assistent::where('usuari','=',$assistent->usuari)->paginate(5);
             foreach ($assistents as $ass) {
-                $ass->esd = $ass->esdeveniment()->select('titol')->first();
+                $ass->esd = $ass->esdeveniment()->select('titol','id')->first();
                 $votacions = $ass->votacions()->get();
                 $aux = array();
                 foreach ($votacions as $vota) {

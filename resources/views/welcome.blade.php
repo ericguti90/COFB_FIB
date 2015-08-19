@@ -182,6 +182,9 @@ $(document).ready(function(){
           
 
         }
+        else {
+          window.location.reload("/login");
+        }
       }
     }); 
     $('.next').unbind(); //unbind. to stop multiple form submit.     

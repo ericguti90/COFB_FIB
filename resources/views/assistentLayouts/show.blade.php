@@ -11,6 +11,23 @@
 @stop
 
 @section('contenido')
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript">
+	function verificar(esd,ass,cont) {
+		confirmar=confirm("Si acceptes, s'esborrarà l'assistent'. Estàs segur?"); 
+		if (confirmar) {
+			$.ajax({
+	      		url: '/esdeveniments/'+esd+'/assistents/'+ass,
+	      		type: "delete",
+	      		success: function(data){
+	      			if (cont!=1) window.location.replace('/esdeveniments/'+esd+'/assistents/'+ass);
+	      			else window.location.replace('/esdeveniments/'+esd+'/assistents');	
+	      	  }
+        	});
+		}
+	};
+	</script>
+
 	@foreach($ass as $item)
 	<div class="caja-gris-larga cebra-1" style="border-radius: 14px;">
 	@if($item->delegat)
@@ -20,6 +37,10 @@
 	@else
 		<h5 class="dos"><span class="titulo-listado"><b>{{$item->esd->titol}}</b></span></h5>
 	@endif
+	@if(!$item->delegat && !$item->assistit && !$item->vota)
+	<div class="user-menu" style="margin-top: -22px;
+    margin-bottom: 38px;"><a onclick="verificar({{$item->esd->id}},{{$item->id}},{{$ass->count()}})" class="cierre" style="float:right;"></a></div>
+    @endif
 		<ul class="lista-enlaces">
 			<li><a><b>Delegat:</b> @if($item->delegat) Sí @else No @endif</a></li>
 			<li><a><b>Assistit:</b> @if($item->assistit) Sí @else No @endif</a></li>

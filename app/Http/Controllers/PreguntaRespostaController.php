@@ -12,6 +12,7 @@ use App\Votacio;
 use App\Resposta;
 use App\Assistent;
 use App\Pregunta;
+use App\VotacioAssistent;
 
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
 use Response;
@@ -242,6 +243,11 @@ class PreguntaRespostaController extends Controller
         }
         //$result = array_add($result,'pregResp',$pregResp);
 
-        return view('respostaLayouts.show')->with("result",$respostes)->with("votacio", $votacio->titol)->with("usuari",$assistent->usuari)->with("total",$total);
+        return view('respostaLayouts.show')->with("result",$respostes)->with("votacio", $votacio->titol)->with("usuari",$assistent->usuari)->with("total",$total)->with("idAssistent",$idAssistent)->with("idVotacio",$idVotacio);
+    }
+
+    public function deleteRespostesAssistents($idVotacio, $idAssistent){
+        $vota = VotacioAssistent::where('assistent_id','=',$idAssistent)->where('votacio_id','=',$idVotacio)->first();
+        if($vota) $vota->delete();
     }
 }

@@ -13,7 +13,25 @@
 
 
 @section('contenido')
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript">
+	function verificar(id) {
+		confirmar=confirm("Si acceptes, s'esborrarà l'esdeveniment. Estàs segur?"); 
+		if (confirmar) {
+			$.ajax({
+	      		url: '/esdeveniments/'+id,
+	      		type: "delete",
+	      		success: function(data){
+	      			window.location.replace("/esdeveniments");
+	      	  }
+        	});
+		}
+	};
+	</script>
 	<div class="paso">
+		@if($esd->num==0  && $esd->votacions->count()==0)
+		<div class="user-menu"><a onclick="verificar({{$esd->id}})" class="cierre" style="float:right;"></a></div>
+		@endif
 		<?php 
 			$now = time();
 			$diff =  strtotime($esd->dataHora) - $now;
@@ -25,6 +43,7 @@
 		@elseif ($diff <= (60*60*24*5)) <h5 class="uno">{{$esd->titol}}</h5>
 		@else <h5 class="tres">{{$esd->titol}}</h5>
 		@endif
+			
 			<div style="float:left;">			
 			<p><b>Data i hora:</b>   {{$esd->dataHora}}@if($diff>0)   <i>(falten: {{$months}} mesos i {{$days}} dies)@endif</i></p>
 			<p><b>Lloc:</b>   {{$esd->lloc}}</p>

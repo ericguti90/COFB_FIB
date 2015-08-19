@@ -11,8 +11,24 @@
 @stop
 
 @section('contenido')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	function verificar() {
+		confirmar=confirm("Si acceptes , s'eliminarà l'assistent de la votació. Estàs segur?"); 
+		if (confirmar) {
+			$.ajax({
+	      		url: '/votacions/{{$idVotacio}}/assistents/{{$idAssistent}}',
+	      		type: "delete",
+	      		success: function(data){
+	      			window.location.replace('/votacions/{{$idVotacio}}');
+	      	  }
+        	});
+		}
+	};
+</script>
 <div class="caja-gris paso" style="border-radius: 14px;">
 	@if($result == "[]")
+	<div class="user-menu"><a onclick="verificar()" class="cierre" style="float:right;"></a></div>
 	<h5 class="dos">{{$votacio}}</h5>
 	@elseif($total)
 	<h5 class="tres">{{$votacio}}</h5>

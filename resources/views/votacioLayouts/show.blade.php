@@ -14,6 +14,9 @@
 
 @section('contenido')
 	<div class="paso">
+		@if($vota->ass==0 && $vota->preguntes->count()==0)
+		<div class="user-menu"><a onclick="verificar({{$vota->id}})" class="cierre" style="float:right;"></a></div>
+		@endif
 		<?php 
 			$now = time();
 			$diff =  strtotime($vota->dataHoraIni) - $now;
@@ -113,7 +116,18 @@ $('#segon').click(function()
 
 });
 
-
+function verificar(id) {
+		confirmar=confirm("Si acceptes, s'esborrarà la votació. Estàs segur?"); 
+		if (confirmar) {
+			$.ajax({
+	      		url: '/votacions/'+id,
+	      		type: "delete",
+	      		success: function(data){
+	      			window.location.replace("/votacions");
+	      	  }
+        	});
+		}
+	};
 	
 
 

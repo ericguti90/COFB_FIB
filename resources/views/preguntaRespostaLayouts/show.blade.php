@@ -20,7 +20,7 @@
 	<h5 class="celeste-oscuro titulo-icono premsa">Respostes a la pregunta</h5>
 @else
 <section class="lc-naranja listado-contenidos">
-	<h5 class="orange titulo-icono legislacio">Respostes a la pregunta </h5>
+	<h5 class="orange titulo-icono legislacio"> <div class="user-menu"><a onclick="verificarPregunta({{$pregunta->id}})" class="cierre" style="float:right; margin: -2px -55px 2px 0;"></a></div>Respostes a la pregunta </h5>
 @endif
 	@if($respostes->lastPage()>1)
 	<div class="absolute pag-flechas">	
@@ -28,9 +28,11 @@
 		<a onCLick="list(1, {{$respostes->lastPage()}})" class="pag-der-celeste left"></a>
 	</div>	
 	@endif
+
 	<ul class="lc-list">
 		@forelse ($respostes as $res)
 		<li>
+		<div class="user-menu"><a onclick="verificar({{$res->id}})" class="cierre" style="float:right; margin-top: 12px;"></a></div>
 			<a>
 				<p><span class="fecha">{{$res->dataHora}}</span></p>
 				<p>{{$res->resposta}}. <i><b>{{$res->usuari_id}}</b></i></p>	
@@ -56,6 +58,31 @@
 		else if(posActual > max) posActual = 1;
 		window.location.replace("?page=".concat(posActual));
 	}
+
+	function verificar(id) {
+		confirmar=confirm("Si acceptes, s'esborrarà la resposta. Estàs segur?"); 
+		if (confirmar) {
+			$.ajax({
+	      		url: '/votacions/'+ {{$votacio->id}} + '/preguntes/' + {{$pregunta->id}} + '/respostes/' + id,
+	      		type: "delete",
+	      		success: function(data){
+	      			window.location.replace('/votacions/'+ {{$votacio->id}} + '/preguntes/' + {{$pregunta->id}} + '/respostes');
+	      	  }
+        	});
+		}
+	};
+	function verificarPregunta(id) {
+		confirmar=confirm("Si acceptes, s'esborrarà la pregunta. Estàs segur?"); 
+		if (confirmar) {
+			$.ajax({
+	      		url: '/votacions/'+ {{$votacio->id}} + '/preguntes/' + id,
+	      		type: "delete",
+	      		success: function(data){
+	      			window.location.replace('/votacions/'+ {{$votacio->id}});
+	      	  }
+        	});
+		}
+	};
 </script>
 @stop
 

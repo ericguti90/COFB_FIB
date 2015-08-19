@@ -43,11 +43,11 @@ header('Content-Type: text/html; charset=UTF-8');
                         <ul>
                             <li class="item m-mobilet sub"><button type="button" id="menu-lateral" class=""><span>Menú Activitat de l´Oficina</span><img src="/img/iconos/menu.png" alt="search"></button></li>
                             <li class="item m-mobilet item2"><a href="/esdeveniments">Esdeveniments</a></li>
-                            <li class="item m-mobilet item2"><a href="#">Votacions</a></li>
-                            <li class="item m-mobilet no-border item2"><a href="#">Assistents</a></li>
+                            <li class="item m-mobilet item2"><a href="/votacions">Votacions</a></li>
+                            <li class="item m-mobilet no-border item2"><a href="/assistents">Assistents</a></li>
                         </ul>
                     </li>
-                    <li class="item home"><a id="inici" href="#" class=""><span class="menu_tab">Marcar com pàgina d'inici</span></a></li>
+                    <li class="item" style="background: none;background-color: #00a9a1; border-left: 1px solid #40c2d3; width: 206px;"><a id="inici" href="#" class=""><span class="menu_tab"></span></a></li>
                 </ul>
                 <!-- Fin Menu Superior -->
                 <!--Menu Desplegable Oculto-->
@@ -62,7 +62,7 @@ header('Content-Type: text/html; charset=UTF-8');
             <!-- Fin Navegacion -->
             <div class="usuario">
                 <div>
-                    <p><span>Eric Gutiérrez Llopis</span></p>
+                    <p><span>  @if (Auth::check()){{ Auth::user()->username }}@endif</span></p>
                     <div class="user-menu">
                         <a href="#" class="mail">Mail</a>
                         <a href="#" class="calendario">Calendario</a>
@@ -77,12 +77,7 @@ header('Content-Type: text/html; charset=UTF-8');
                     <input type="text" id="ip-search">
                 </form>
             </div>
-            <div class="pagina_inici">
-                <div>
-                    <p>Marcar <b>Activitat de l’Oficina</b> como página de inicio</p>
-                    <input class="btn btn-verde right" type="submit" value="ENTRAR">
-                </div>
-            </div>
+            
         </header>
         <!--Fin de Cabecera-->
       <!--Contenedor General-->
