@@ -50,9 +50,10 @@ class EsdevenimentAssistentController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create($idEsdeveniment)
     {
-        //
+        $vota = Esdeveniment::find($idEsdeveniment)->first()->votacions;
+        return view('assistentLayouts.create')->with("id", $idEsdeveniment)->with("vota", $vota)->with("count", $vota->count());
     }
 
     /**

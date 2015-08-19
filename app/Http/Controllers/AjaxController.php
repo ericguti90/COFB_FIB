@@ -43,6 +43,7 @@ class AjaxController extends Controller {
 	public function postAssistents()
 	{
 		$assistent = Request::input('arr');
+		$votacions = Request::input('vota');
 		foreach ($assistent as $ass) {
 			$result=Assistent::where('esdeveniment_id', '=', Request::input('id'))->where('usuari', '=', $ass)->get();
  			if($result->isEmpty() && $ass != "") {
@@ -54,6 +55,19 @@ class AjaxController extends Controller {
  				$fecha = DateTime::createFromFormat($formato, "0-0-0 0:0:0");
  				$nouAss = array_add($nouAss,'dataHora',$fecha);
  				$nouAssistent = Assistent::create($nouAss);
+ 				if($votacions) {
+ 					foreach ($votacions as $vota) {
+	 					$id = Votacio::where('titol','=',$vota)->select('id')->first();
+	 					if($id) {
+	 						$voAs = VotacioAssistent::where('assistent_id', "=", $nouAssistent->id)->where('votacio_id', '=', $id->id)->get();
+							if($voAs->isEmpty()) {
+								$result = array('assistent_id'=>$nouAssistent->id);
+								$result = array_add($result,'votacio_id',$id->id);
+								$novaVoAs = VotacioAssistent::create($result);
+							}
+	 					}
+	 				}
+ 				}
  			}
 		}
 	}

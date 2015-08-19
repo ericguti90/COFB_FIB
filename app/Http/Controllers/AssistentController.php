@@ -60,12 +60,12 @@ class AssistentController extends Controller
                 $votacions = $ass->votacions()->get();
                 $aux = array();
                 foreach ($votacions as $vota) {
-                    array_push($aux, $vota->votacio()->select('titol')->first());
+                    array_push($aux, $vota->votacio()->select('titol','id')->first());
                 }
                 $ass->vota = $aux;
 
             }
-            return $assistents;
+            return view('assistentLayouts.show')->with("ass", $assistents)->with("usuari",$assistent->usuari);
         }
     }
 }

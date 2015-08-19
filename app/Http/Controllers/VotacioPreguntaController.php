@@ -43,9 +43,9 @@ class VotacioPreguntaController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('preguntaLayouts.create')->with("id", $id);
     }
 
     /**
