@@ -9,10 +9,12 @@ use App\Http\Controllers\Controller;
 
 // Necesitaremos el modelo Fabricante para ciertas tareas.
 use App\Votacio;
+use App\Pregunta;
 
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
 use Response;
 use DateTime;
+use Redirect;
 
 class VotacioPreguntaController extends Controller
 {
@@ -120,9 +122,10 @@ class VotacioPreguntaController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($idVotacio,$idPregunta)
     {
-        
+        $pregunta=Pregunta::find($idPregunta);
+        return view('preguntaLayouts.edit')->with('preg',$pregunta);
     }
 
     /**
@@ -164,7 +167,7 @@ class VotacioPreguntaController extends Controller
             if($request->input('opcions') == "") $opcions = "null";
             else $opcions=$request->input('opcions');
         }
-        if ($request->input('obligatoria') == "true") $obligatoria=true;
+        if ($request->input('obligatoria') == "true" || $request->input('obligatoria') == "on") $obligatoria=true;
         else $obligatoria = false;
          
         // Necesitamos detectar si estamos recibiendo una petición PUT o PATCH.
@@ -210,7 +213,7 @@ class VotacioPreguntaController extends Controller
         }
  
         // Si el método no es PATCH entonces es PUT y tendremos que actualizar todos los datos.
-        if (!$titol || !$obligatoria)
+        if (!$titol)
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
             return response()->json(['errors'=>array(['code'=>422,'message'=>'Faltan valores para completar el procesamiento.'])],422);
@@ -222,8 +225,10 @@ class VotacioPreguntaController extends Controller
  
         // Almacenamos en la base de datos el registro.
         $pregunta->save();
- 
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api')
         return response()->json(['status'=>'ok','data'=>$pregunta], 200);
+        else
+        return Redirect::to('/votacions/'.$idVotacio.'/preguntes/'.$idPregunta.'/respostes');
     }
 
     /**

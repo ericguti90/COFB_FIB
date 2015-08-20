@@ -3,10 +3,10 @@
 @section('titulo') Nou assistent @stop
 
 @section('menu')
-<h1>Esdeveniments</h1> <!-- Titulo de la home seleccionada -->
+<h1>Assistents</h1> <!-- Titulo de la home seleccionada -->
 <ul>
-    <li class="selected"><a href="#">Llistat d'esdeveniments</a></li>
-    <li><a href="#">Crear nou esdeveniment</a></li>
+    <li><a class="active" href="/esdeveniments/{{$id}}">Llistat d'assistents</a></li>
+    <li class="selected"><a href="/esdeveniments/{{$id}}/assistents/create">Crear nou assistent</a></li>
 </ul>
 @stop
 

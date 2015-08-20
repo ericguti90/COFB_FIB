@@ -38,7 +38,7 @@
 			<div style="float:left;">			
 			<p><b>Esdeveniment:</b>   {{$vota->esd->titol}}
 			<p><b>Data i hora inici:</b>   {{$vota->dataHoraIni}}@if($diff>0)   <i>(falten: {{$months}} mesos i {{$days}} dies)@endif</i></p>
-			<p><b>Data i hora fin:</b>   {{$vota->dataHoraIni}}@if($diff2>0 && $diff<0)   <i>(falten: {{$months}} mesos i {{$days}} dies)@endif</i></p>
+			<p><b>Data i hora fin:</b>   {{$vota->dataHoraFin}}@if($diff2>0 && $diff<0)   <i>(falten: {{$months}} mesos i {{$days}} dies)@endif</i></p>
 			<p><b>Nombre de participants:</b>   {{$vota->ass}}</p>
 			</div>
 	</div>

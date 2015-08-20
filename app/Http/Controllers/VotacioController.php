@@ -145,7 +145,9 @@ class VotacioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $votacio=Votacio::find($id);
+        $esd = Esdeveniment::find($votacio->esdeveniment_id);
+        return view('votacioLayouts.edit')->with('vota',$votacio)->with('esd',$esd);
     }
 
     /**
@@ -231,7 +233,10 @@ class VotacioController extends Controller
  
         // Almacenamos en la base de datos el registro.
         $votacio->save();
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api')
         return response()->json(['status'=>'ok','data'=>$votacio], 200);
+        else
+        return Redirect::to('/votacions/'.$id);
     }
 
     /**

@@ -150,4 +150,19 @@ class AjaxController extends Controller {
 			}
 		}
 	}
+
+	public function postAssistentVotacio(){
+		$array = Request::input('vota');
+		if($array){
+			foreach ($array as $vota) {
+				$id = Votacio::where('titol', "=", $vota)->select('id')->first();
+				$voAs = VotacioAssistent::where('assistent_id', "=", Request::input('id'))->where('votacio_id', '=', $id->id)->get();
+				if($voAs->isEmpty()) {
+					$result = array('assistent_id'=>Request::input('id'));
+					$result = array_add($result,'votacio_id',$id->id);
+					$novaVoAs = VotacioAssistent::create($result);
+				}
+			}
+		}
+	}
 }

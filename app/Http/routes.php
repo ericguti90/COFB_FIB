@@ -17,6 +17,7 @@ Route::post('/assistents/ajax', 'AjaxController@postAssistents');
 Route::post('/votacions/ajax', 'AjaxController@postVotacions');
 Route::get('/votacions/preassistents/ajax', 'AjaxController@getAssistents');
 Route::post('/votacions/assistents/ajax', 'AjaxController@postAssistentsVotacio');
+Route::post('/votacions/assistent/ajax', 'AjaxController@postAssistentVotacio');
 Route::post('/preguntes/ajax', 'AjaxController@postPreguntes');
 Route::get('/votacions/{votacions}/assistents/{assistents}', 'PreguntaRespostaController@respostesAssistents');
 Route::delete('/votacions/{votacions}/assistents/{assistents}', 'PreguntaRespostaController@deleteRespostesAssistents');

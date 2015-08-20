@@ -133,7 +133,9 @@ class EsdevenimentController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (!Auth::check()) return Redirect::to('login');
+        $esdeveniment=Esdeveniment::find($id);
+        return view ('esdevenimentLayouts.edit')->with("esd",$esdeveniment);
     }
 
     /**
@@ -162,9 +164,9 @@ class EsdevenimentController extends Controller
         $fecha = DateTime::createFromFormat($formato, $request->input('dataHora'));
         $dataHora=$fecha;
         $lloc=$request->input('lloc');
-        if ($request->input('inscripcioOberta') == "true") $inscripcioOberta=true;
+        if ($request->input('inscripcioOberta') == "true" || $request->input('inscripcioOberta') == "on") $inscripcioOberta=true;
         else $inscripcioOberta = false;
-        if ($request->input('presencial') == "true") $presencial=true;
+        if ($request->input('presencial') == "true" || $request->input('presencial') == "on") $presencial=true;
         else $presencial = false;
 
  
@@ -223,12 +225,16 @@ class EsdevenimentController extends Controller
  
  
         // Si el método no es PATCH entonces es PUT y tendremos que actualizar todos los datos.
-        if (!$titol || !$dataHora || !$lloc || !$inscripcioOberta || !$presencial)
+        if (!$titol )
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
-            return response()->json(['errors'=>array(['code'=>422,'message'=>'Faltan valores para completar el procesamiento.'])],422);
+            return response()->json(['errors'=>array(['code'=>422,'message'=>'Faltan titulo'])],422);
         }
- 
+        if (!$dataHora)
+        {
+            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
+            return response()->json(['errors'=>array(['code'=>422,'message'=>'Faltan dataHora'])],422);
+        }
         $esdeveniment->titol = $titol;
         $esdeveniment->dataHora = $dataHora;
         $esdeveniment->lloc = $lloc;
@@ -237,7 +243,9 @@ class EsdevenimentController extends Controller
  
         // Almacenamos en la base de datos el registro.
         $esdeveniment->save();
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api')
         return response()->json(['status'=>'ok','data'=>$esdeveniment], 200);
+        else return Redirect::to('/esdeveniments/'.$id);
     }
 
     /**

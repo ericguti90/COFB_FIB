@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 // Necesitaremos el modelo Fabricante para ciertas tareas.
 use App\Esdeveniment;
+use App\Assistent;
+use App\Votacio;
 
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
 use Response;
@@ -141,9 +143,24 @@ class EsdevenimentAssistentController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($idEsdeveniment,$idAssistent)
     {
-        //
+        $assistent=Assistent::find($idAssistent);
+        $votaAss =  $assistent->votacions()->select('votacio_id')->get();
+        $a = collect([]);
+        $b = collect([]);
+        foreach ($votaAss as $v) $a->push($v->votacio_id);
+        $votacions = Esdeveniment::find($assistent->esdeveniment_id)->votacions()->get();
+        foreach ($votacions as $v) $b->push($v->id);
+        $diff = $b->diff($a);
+        $arrayVota = [];
+        $i = 1;
+        foreach ($diff as $vota) {
+            $votac = Votacio::find($vota);
+            $arrayVota = array_add($arrayVota,$i,$votac->titol);
+            ++$i;
+        }
+        return view('assistentLayouts.edit')->with("ass",$assistent)->with("vota",$arrayVota);
     }
 
     /**
@@ -180,12 +197,12 @@ class EsdevenimentAssistentController extends Controller
  
         // Listado de campos recibidos teóricamente.
         $usuari=$request->input('usuari');
-        if ($request->input('assistit') == "true") $assistit=true;
+        if ($request->input('assistit') == "true" || $request->input('assistit') == "on") $assistit=true;
         else $assistit = false;
         $formato = 'Y-m-d H:i:s';
         $fecha = DateTime::createFromFormat($formato, $request->input('dataHora'));
         $dataHora=$fecha;
-        if ($request->input('delegat') == "true") $delegat=true;
+        if ($request->input('delegat') == "true" || $request->input('delegat') == "on") $delegat=true;
         else $delegat = false;
  
         // Necesitamos detectar si estamos recibiendo una petición PUT o PATCH.
@@ -236,7 +253,7 @@ class EsdevenimentAssistentController extends Controller
         }
  
         // Si el método no es PATCH entonces es PUT y tendremos que actualizar todos los datos.
-        if (!$usuari || !$assistit || !$dataHora || !$delegat)
+        if (!$usuari || !$dataHora)
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
             return response()->json(['errors'=>array(['code'=>422,'message'=>'Faltan valores para completar el procesamiento.'])],422);
@@ -249,8 +266,9 @@ class EsdevenimentAssistentController extends Controller
  
         // Almacenamos en la base de datos el registro.
         $assistent->save();
- 
+        if ($this->getRouter()->getCurrentRoute()->getPrefix() == '/api')
         return response()->json(['status'=>'ok','data'=>$assistent], 200);
+        else return Redirect::to('/assistents/'.$idAssistent);
     }
 
     /**
