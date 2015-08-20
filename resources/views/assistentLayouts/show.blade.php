@@ -40,6 +40,8 @@
 	@if(!$item->delegat && !$item->assistit && !$item->vota)
 	<div class="user-menu" style="margin-top: -22px;
     margin-bottom: 38px;"><a onclick="verificar({{$item->esd->id}},{{$item->id}},{{$ass->count()}})" class="cierre" style="float:right;"></a></div>
+    @else
+    <div class="invalid help" title="No es pot eliminar">&nbsp;</div>
     @endif
 		<ul class="lista-enlaces">
 			<li><a><b>Delegat:</b> @if($item->delegat) Sí @else No @endif</a></li>

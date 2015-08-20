@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/fs_main.css" />
     <link rel="stylesheet" href="/css/fs_responsive.css" />
     <link rel="stylesheet" href="/css/slidebars.css" />
+    <link rel="stylesheet" href="/css/help_msg.css" />
     <!--[if lt IE 9]>
           <script src="js/html5.js" type="text/javascript"></script>
           <script src="js/css3-mediaqueries_src.js" type="text/javascript"></script>

@@ -16,6 +16,8 @@ use App\VotacioAssistent;
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
 use Response;
 use DateTime;
+use Auth;
+use Redirect;
 
 class VotacioController extends Controller
 {
@@ -30,6 +32,7 @@ class VotacioController extends Controller
             return response()->json(['status'=>'ok','data'=>Votacio::all()], 200);
         }
         else {
+            if (!Auth::check()) return Redirect::to('login');
             $vota = Votacio::orderBy('dataHoraFin','desc')->paginate(5);
             foreach ($vota as $item) {
                 $assistents = $item->assistents()->count();
@@ -50,6 +53,7 @@ class VotacioController extends Controller
      */
     public function create()
     {
+        if (!Auth::check()) return Redirect::to('login');
         $ini = Esdeveniment::select('titol')->orderBy('titol','asc')->get();      
         return view('votacioLayouts.create')->with("ini",$ini);
     }
@@ -123,6 +127,7 @@ class VotacioController extends Controller
             return response()->json(['status'=>'ok','data'=>$votacio],200);
         }
         else {
+            if (!Auth::check()) return Redirect::to('login');
             $esd = $votacio->esdeveniments()->select('titol')->first();
             $votacio->esd = $esd;
             $preguntes = $votacio->preguntes()->get();

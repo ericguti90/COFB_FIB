@@ -13,9 +13,12 @@
 
 
 @section('contenido')
-	<div class="paso">
 		@if($vota->ass==0 && $vota->preguntes->count()==0)
+	<div class="paso">
 		<div class="user-menu"><a onclick="verificar({{$vota->id}})" class="cierre" style="float:right;"></a></div>
+		@else
+	<div class="paso" style="height: 195px; overflow: initial;">
+		<div class="invalid help" title="No es pot eliminar" style="margin-top:0;">&nbsp;</div>
 		@endif
 		<?php 
 			$now = time();

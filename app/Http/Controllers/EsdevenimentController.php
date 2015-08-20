@@ -14,6 +14,7 @@ use App\Esdeveniment;
 use Response;
 use DateTime;
 use Auth;
+use Redirect;
 
 class EsdevenimentController extends Controller
 {
@@ -28,6 +29,7 @@ class EsdevenimentController extends Controller
             return response()->json(['status'=>'ok','data'=>Esdeveniment::all()], 200);
         }
         else {
+            if (!Auth::check()) return Redirect::to('login');
             $esd = Esdeveniment::orderBy('dataHora','desc')->paginate(5);
             foreach ($esd as $item) {
                 $count = $item->assistents()->count();
@@ -47,6 +49,7 @@ class EsdevenimentController extends Controller
      */
     public function create()
     {
+        if (!Auth::check()) return Redirect::to('login');
         return view('esdevenimentLayouts.create');
     }
 
@@ -113,6 +116,7 @@ class EsdevenimentController extends Controller
             return response()->json(['status'=>'ok','data'=>$esdeveniment],200);
         }
         else {
+            if (!Auth::check()) return Redirect::to('login');
             $votacions = $esdeveniment->votacions()->select('id','titol','dataHoraIni','dataHoraFin')->get();
             $esdeveniment->votacions = $votacions;
             $num = $esdeveniment->assistents()->count();

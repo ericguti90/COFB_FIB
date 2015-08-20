@@ -17,6 +17,9 @@ use App\VotacioAssistent;
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
 use Response;
 use DateTime;
+use Auth;
+use Redirect;
+
 
 class PreguntaRespostaController extends Controller
 {
@@ -49,6 +52,7 @@ class PreguntaRespostaController extends Controller
             //return response()->json(['status'=>'ok','data'=>$fabricante->aviones],200);
         }
         else {
+            if (!Auth::check()) return Redirect::to('login');
             $respostes="";
             if($votacio) {
                 $pregunta=$votacio->preguntes()->find($idPregunta);

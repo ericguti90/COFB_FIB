@@ -17,7 +17,7 @@
 &nbsp;
 @if(!$respostes->isEmpty())
 <section class="listado-contenidos relative">
-	<h5 class="celeste-oscuro titulo-icono premsa">Respostes a la pregunta</h5>
+	<h5 class="celeste-oscuro titulo-icono premsa" style="padding-right: 20px;"><div class="invalid help" title="No es pot eliminar" style="margin-bottom:0; margin-top: -2px;">&nbsp;</div>Respostes a la pregunta</h5>
 @else
 <section class="lc-naranja listado-contenidos">
 	<h5 class="orange titulo-icono legislacio"> <div class="user-menu"><a onclick="verificarPregunta({{$pregunta->id}})" class="cierre" style="float:right; margin: -2px -55px 2px 0;"></a></div>Respostes a la pregunta </h5>

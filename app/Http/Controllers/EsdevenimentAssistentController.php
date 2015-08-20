@@ -13,6 +13,8 @@ use App\Esdeveniment;
 // Necesitamos la clase Response para crear la respuesta especial con la cabecera de localización en el método Store()
 use Response;
 use DateTime;
+use Auth;
+use Redirect;
 
 class EsdevenimentAssistentController extends Controller
 {
@@ -39,6 +41,7 @@ class EsdevenimentAssistentController extends Controller
             //return response()->json(['status'=>'ok','data'=>$fabricante->aviones],200);
         }
         else {
+            if (!Auth::check()) return Redirect::to('login');
             $assistents = $esdeveniment->assistents()->paginate(5);
             $assistents->id =$idEsdeveniment;
             return view('assistentLayouts.index')->with("assistents",$assistents);
@@ -52,6 +55,7 @@ class EsdevenimentAssistentController extends Controller
      */
     public function create($idEsdeveniment)
     {
+        if (!Auth::check()) return Redirect::to('login');
         $vota = Esdeveniment::find($idEsdeveniment)->first()->votacions;
         return view('assistentLayouts.create')->with("id", $idEsdeveniment)->with("vota", $vota)->with("count", $vota->count());
     }

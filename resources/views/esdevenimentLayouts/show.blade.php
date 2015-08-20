@@ -28,9 +28,12 @@
 		}
 	};
 	</script>
-	<div class="paso">
 		@if($esd->num==0  && $esd->votacions->count()==0)
+	<div class="paso">
 		<div class="user-menu"><a onclick="verificar({{$esd->id}})" class="cierre" style="float:right;"></a></div>
+		@else
+	<div class="paso" style="height: 195px; overflow: initial;">
+		<div class="invalid help" title="No es pot eliminar" style="margin-top:0;">&nbsp;</div>
 		@endif
 		<?php 
 			$now = time();

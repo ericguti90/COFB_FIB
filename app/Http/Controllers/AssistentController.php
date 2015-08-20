@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Assistent;
+use Auth;
+use Redirect;
 
 class AssistentController extends Controller
 {
@@ -23,6 +25,7 @@ class AssistentController extends Controller
         }
         else{
             //return Assistent::distinct()->select('usuari')->groupBy('usuari')->get();
+            if (!Auth::check()) return Redirect::to('login');
             $assistents = Assistent::select('usuari')->distinct('usuari')->paginate(5);
             foreach ($assistents as $ass) {
                 $ass->esd = Assistent::where('usuari','=',$ass->usuari)->count();
@@ -54,6 +57,7 @@ class AssistentController extends Controller
             return response()->json(['status'=>'ok','data'=>$assistent],200);
         }
         else {
+            if (!Auth::check()) return Redirect::to('login');
             $assistents = Assistent::where('usuari','=',$assistent->usuari)->paginate(5);
             foreach ($assistents as $ass) {
                 $ass->esd = $ass->esdeveniment()->select('titol','id')->first();
