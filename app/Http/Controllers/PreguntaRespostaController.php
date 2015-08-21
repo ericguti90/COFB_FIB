@@ -247,7 +247,8 @@ class PreguntaRespostaController extends Controller
         }
         //$result = array_add($result,'pregResp',$pregResp);
 
-        return view('respostaLayouts.show')->with("result",$respostes)->with("votacio", $votacio->titol)->with("usuari",$assistent->usuari)->with("total",$total)->with("idAssistent",$idAssistent)->with("idVotacio",$idVotacio);
+        return view('respostaLayouts.show')->with("result",$respostes)->with("votacio", $votacio->titol)->with("usuari",$assistent->usuari)->with("total",$total)
+        ->with("idAssistent",$idAssistent)->with("idVotacio",$idVotacio)->with("idEsdeveniment", $assistent->esdeveniment_id);
     }
 
     public function deleteRespostesAssistents($idVotacio, $idAssistent){

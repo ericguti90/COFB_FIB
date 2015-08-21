@@ -3,10 +3,12 @@
 @section('titulo') {{$votacio->titol}} @stop
 
 @section('menu')
-<h1>Esdeveniments</h1> <!-- Titulo de la home seleccionada -->
+<h1>Preguntes</h1> <!-- Titulo de la home seleccionada -->
 <ul>
-    <li class="selected"><a href="#">Llistat d'esdeveniments</a></li>
-    <li><a href="#">Crear nou esdeveniment</a></li>
+    <li><a href="/votacions/{{$votacio->id}}">Veure votació</a></li>
+    <li><a href="/votacions/{{$votacio->id}}/preguntes/create">Crear nova pregunta</a></li>
+    <li><a href="/votacions/{{$votacio->id}}/preguntes/{{$pregunta->id}}/edit">Editar pregunta</a></li>
+    <li class="selected"><a href="/votacions/{{$votacio->id}}/preguntes/{{$pregunta->id}}/respostes">Veure respostes</a></li>
 </ul>
 @stop
 

@@ -5,8 +5,8 @@
 @section('menu')
 <h1>Esdeveniments</h1> <!-- Titulo de la home seleccionada -->
 <ul>
-    <li class="selected"><a href="#">Llistat d'esdeveniments</a></li>
-    <li><a href="#">Crear nou esdeveniment</a></li>
+    <li><a href="/esdeveniments">Llistat d'esdeveniments</a></li>
+    <li class="selected"><a href="/esdeveniments/create">Crear nou esdeveniment</a></li>
 </ul>
 @stop
 

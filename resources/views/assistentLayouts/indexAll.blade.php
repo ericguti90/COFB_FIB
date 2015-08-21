@@ -3,10 +3,9 @@
 @section('titulo') Llistat d'assistents @stop
 
 @section('menu')
-<h1>Esdeveniments</h1> <!-- Titulo de la home seleccionada -->
+<h1>Assistents</h1> <!-- Titulo de la home seleccionada -->
 <ul>
-    <li class="selected"><a href="#">Llistat d'esdeveniments</a></li>
-    <li><a href="#">Crear nou esdeveniment</a></li>
+    <li class="selected"><a href="/assistents">Llistat d'assistents</a></li>
 </ul>
 @stop
 

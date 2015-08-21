@@ -30,7 +30,7 @@ header('Content-Type: text/html; charset=UTF-8');
         <header id="banner" role="banner">
             <!--Contenedor Header: Logo -->
             <div id="heading" class="contenedor-header">
-                <a class="logo left" href="#">
+                <a class="logo left" href="/esdeveniments">
                     <img src="/img/logo.jpg" alt="Collegui de Farmacéutics de Barcelona" width="171" height="36"/>
                 </a>
             </div>
@@ -64,11 +64,11 @@ header('Content-Type: text/html; charset=UTF-8');
             <div class="usuario">
                 <div>
                     <p><span>  @if (Auth::check()){{ Auth::user()->username }}@endif</span></p>
-                    <div class="user-menu">
-                        <a href="#" class="mail">Mail</a>
-                        <a href="#" class="calendario">Calendario</a>
-                        <a href="#" class="fichero">Fichero</a>
-                        <a href="#" class="configuracion">Configuracion</a>
+                    <div class="user-menu" style="padding-left: 30px;">
+                        <a href="https://correu.cofb.net/" class="mail">Mail</a>
+                        <!--<a href="#" class="calendario">Calendario</a>-->
+                        <a href="http://bbs2015.cofb.net/group/guest/els-meus-documents" class="fichero">Fichero</a>
+                        <!--<a href="#" class="configuracion">Configuracion</a>-->
                         <a href="/logout" class="cierre">Cierre</a>
                     </div>
                 </div>
@@ -131,20 +131,20 @@ header('Content-Type: text/html; charset=UTF-8');
                                         <section class="accesos-directos">
                                             <h6>Accesos Directos</h6>
                                             <ul class="lista-accesos-directos">
-                                                <li class="item-accesos-directos"><a href="">Actualitat dia a dia</a></li>
-                                                <li class="item-accesos-directos"><a href="">Assegurances</a></li>
-                                                <li class="item-accesos-directos"><a href="">Centre de documentació</a></li>
-                                                <li class="item-accesos-directos"><a href="">Medicaments</a></li>
-                                                <li class="item-accesos-directos"><a href="">Legislació</a></li>
-                                                <li class="item-accesos-directos"><a href="">Actualitat dels laboratoris</a></li>
+                                                <li class="item-accesos-directos"><a href="http://bbs2015.cofb.net/group/guest/ultims-comunicats">Actualitat dia a dia</a></li>
+                                                <li class="item-accesos-directos"><a href="http://bbs2015.cofb.net/group/guest/assegurances-zurich-cofb-serveis-">Assegurances</a></li>
+                                                <li class="item-accesos-directos"><a href="http://bbs2015.cofb.net/group/guest/bases-de-dades-i-recursos-professionals">Centre de documentació</a></li>
+                                                <li class="item-accesos-directos"><a href="http://bbs2015.cofb.net/group/guest/avaluacions-de-nous-medicaments">Medicaments</a></li>
+                                                <li class="item-accesos-directos"><a href="http://bbs2015.cofb.net/group/guest/les-mes-consultades">Legislació</a></li>
+                                                <li class="item-accesos-directos"><a href="http://bbs2015.cofb.net/group/guest/actualitat-cientifica1">Actualitat dels laboratoris</a></li>
                                             </ul>
                                         </section>
                                         <!--Fin Caja de Accesos directos-->
                                         <!--Banners-->
                                         <section class="banners">
-                                            <a href="#" class="enl-banner"><img src="/img/banners/b1.jpg" alt="Banner1" class="banner"></a>
-                                            <a href="#" class="enl-banner"><img src="/img/banners/b2.jpg" alt="Banner2" class="banner"></a>
-                                            <a href="#" class="enl-banner"><img src="/img/banners/b3.jpg" alt="Banner3" class="banner"></a>
+                                            <a href="https://correu.cofb.net/" class="enl-banner"><img src="/img/banners/b1.jpg" alt="Banner1" class="banner"></a>
+                                            <a href="http://bbs2015.cofb.net/" class="enl-banner"><img src="/img/banners/b2.jpg" alt="Banner2" class="banner"></a>
+                                            <a href="http://bbs2015.cofb.net/group/guest/guies-de-qualitat" class="enl-banner"><img src="/img/banners/b3.jpg" alt="Banner3" class="banner"></a>
                                         </section>
                                         <!--Fin Banners-->
                                     <!--Fin Columna de Contenido Derecha-->
@@ -171,11 +171,11 @@ header('Content-Type: text/html; charset=UTF-8');
                 </div>
                 <div class="footer_menu_container">
                     <ul class="footer-menu">
-                        <li><a href="#">Contacte</a></li>
-                        <li><a href="#">Ajuda</a></li>
-                        <li><a href="#">Avis Legal</a></li>
-                        <li><a href="#">Farmaceuticonline.com</a></li>
-                        <li><a href="#">cofb.org</a></li>
+                        <li><a href="http://bbs2015.cofb.net/group/guest/contacte">Contacte</a></li>
+                        <li><a href="http://bbs2015.cofb.net/group/guest/suport-informatic">Ajuda</a></li>
+                        <li><a href="http://bbs2015.cofb.net/group/guest/avis-legal">Avis Legal</a></li>
+                        <li><a href="http://www.farmaceuticonline.com/">Farmaceuticonline.com</a></li>
+                        <li><a href="http://www.cofb.org/">cofb.org</a></li>
                     </ul>
                 </div>
             </div>

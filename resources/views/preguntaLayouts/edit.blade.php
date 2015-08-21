@@ -3,13 +3,14 @@
 @section('titulo') Editar esdeveniment @stop
 
 @section('menu')
-<h1>Esdeveniments</h1> <!-- Titulo de la home seleccionada -->
+<h1>Preguntes</h1> <!-- Titulo de la home seleccionada -->
 <ul>
-    <li class="selected"><a href="#">Llistat d'esdeveniments</a></li>
-    <li><a href="#">Crear nou esdeveniment</a></li>
+    <li><a href="/votacions/{{$preg->votacio_id}}">Veure votació</a></li>
+    <li><a href="/votacions/{{$preg->votacio_id}}/preguntes/create">Crear nova pregunta</a></li>
+    <li class="selected"><a href="/votacions/{{$preg->votacio_id}}/preguntes/{{$preg->id}}/edit">Editar pregunta</a></li>
+    <li><a href="/votacions/{{$preg->votacio_id}}/preguntes/{{$preg->id}}/respostes">Veure respostes</a></li>
 </ul>
 @stop
-
 
 @section('contenido')
 <form method="POST" action="/votacions/{{$preg->votacio_id}}/preguntes/{{$preg->id}}" id="form-activ-collegial">

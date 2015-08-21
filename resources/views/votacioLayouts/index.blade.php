@@ -3,10 +3,10 @@
 @section('titulo') Llistat de votacions @stop
 
 @section('menu')
-<h1>Esdeveniments</h1> <!-- Titulo de la home seleccionada -->
+<h1>Votacions</h1> <!-- Titulo de la home seleccionada -->
 <ul>
-    <li class="selected"><a href="#">Llistat d'esdeveniments</a></li>
-    <li><a href="#">Crear nou esdeveniment</a></li>
+    <li class="selected"><a href="/votacions">Llistat de votacions</a></li>
+    <li><a href="/votacions/create">Crear nova votació</a></li>
 </ul>
 @stop
 

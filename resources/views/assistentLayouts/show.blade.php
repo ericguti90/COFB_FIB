@@ -2,13 +2,7 @@
  
 @section('titulo') Informació sobre l'assistent {{$usuari}} @stop
 
-@section('menu')
-<h1>Esdeveniments</h1> <!-- Titulo de la home seleccionada -->
-<ul>
-    <li class="selected"><a href="#">Llistat d'esdeveniments</a></li>
-    <li><a href="#">Crear nou esdeveniment</a></li>
-</ul>
-@stop
+
 
 @section('contenido')
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -29,6 +23,7 @@
 	</script>
 
 	@foreach($ass as $item)
+	<?php $id = $item->id ?>
 	<div class="caja-gris-larga cebra-1" style="border-radius: 14px;">
 	@if($item->delegat)
 		<h5 class="uno"><span class="titulo-listado"><b>{{$item->esd->titol}}</b></span></h5>
@@ -77,3 +72,11 @@
 
 
 @stop 
+
+@section('menu')
+<h1>Assistents</h1> <!-- Titulo de la home seleccionada -->
+<ul>
+    <li><a href="/assistents">Llistat d'assistents</a></li>
+    <li class="selected"><a href="/assistents/{{$id}}">Veure Assistent</a></li>
+</ul>
+@stop

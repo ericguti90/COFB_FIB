@@ -9,7 +9,18 @@ function hidefloating(current){
 		if(current!='buscador') $(".buscador").slideUp(0); 
 		if(current!='pagina_inici') $(".pagina_inici").slideUp(0); 
 
-		if(current!='menu_desp') $('body').removeClass('menu_showed').addClass('menu_hidden');
+		if(current!='menu_desp'){
+			if($("#wrapper").width()>=670){
+				if($('body').hasClass('menu_showed')){
+					$('#wrapper').animate({left: '-=248'}, 600);
+					$('.sb-slidebar').animate({width: 0}, 600, function(){
+						$('body').removeClass('menu_showed').addClass('menu_hidden');
+					});
+				}
+			}else{
+				$('body').removeClass('menu_showed').addClass('menu_hidden');
+			}
+		}
 }
 
 
@@ -85,9 +96,18 @@ $(document).ready(function(){
 	$(".menu-desplegable .menu_container > ul li:has(ul)").addClass("has-sub");
 
 	$('.menu-desplegable').on("click", "li", function (e) {
-		e.preventDefault();
-		e.stopPropagation();
-		fakeCombo();
+		//console.log($(this));
+		var href = $(this).children().attr('href');
+		//console.log(href);
+		if(href == '#'){
+			e.preventDefault();
+			e.stopPropagation();
+			fakeCombo();
+		}else{
+			location.href= href;
+			e.preventDefault();
+			e.stopPropagation();
+		}
 	});
 
 	$('.menu-desplegable').on("click", ".has-sub", function (e) {

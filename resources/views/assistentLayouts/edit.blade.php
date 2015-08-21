@@ -3,10 +3,11 @@
 @section('titulo') Editar assistent @stop
 
 @section('menu')
-<h1>Esdeveniments</h1> <!-- Titulo de la home seleccionada -->
+<h1>Assistents</h1> <!-- Titulo de la home seleccionada -->
 <ul>
-    <li class="selected"><a href="#">Llistat d'esdeveniments</a></li>
-    <li><a href="#">Crear nou esdeveniment</a></li>
+    <li><a href="/assistents">Llistat d'assistents</a></li>
+    <li><a href="/esdeveniments/{{$ass->esdeveniment_id}}/assistents/create">Crear nou assistent</a></li>
+    <li class="selected"><a href="/esdeveniments/{{$ass->esdeveniment_id}}/assistents/{{$ass->id}}">Editar assistent</a></li>
 </ul>
 @stop
 
@@ -44,6 +45,7 @@
 					<input type="hidden" name="_method" value="put" /></div>
 				</div>
 			</fieldset>
+			<?php $numVota = 0 ?>
 			@if(sizeof($vota)!=0)
 			<fieldset class="borde-azul">
 				<h3>VOTACIONS DISPONIBLES</h3>

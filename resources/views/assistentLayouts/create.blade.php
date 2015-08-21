@@ -5,7 +5,7 @@
 @section('menu')
 <h1>Assistents</h1> <!-- Titulo de la home seleccionada -->
 <ul>
-    <li><a class="active" href="/esdeveniments/{{$id}}">Llistat d'assistents</a></li>
+    <li><a href="/assistents">Llistat d'assistents</a></li>
     <li class="selected"><a href="/esdeveniments/{{$id}}/assistents/create">Crear nou assistent</a></li>
 </ul>
 @stop

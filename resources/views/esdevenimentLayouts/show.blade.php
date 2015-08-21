@@ -5,8 +5,10 @@
 @section('menu')
 <h1>Esdeveniments</h1> <!-- Titulo de la home seleccionada -->
 <ul>
-    <li class="selected"><a href="#">Llistat d'esdeveniments</a></li>
-    <li><a href="#">Crear nou esdeveniment</a></li>
+    <li><a href="/esdeveniments">Llistat d'esdeveniments</a></li>
+    <li><a href="/esdeveniments/create">Crear nou esdeveniment</a></li>
+    <li><a href="/esdeveniments/{{$esd->id}}/edit">Modificar esdeveniment</a></li>
+    <li class="selected"><a href="/esdeveniments/{{$esd->id}}">Veure esdeveniment</a></li>
 </ul>
 @stop
 
