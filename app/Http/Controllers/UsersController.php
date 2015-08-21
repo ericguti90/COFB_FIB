@@ -39,8 +39,7 @@ class UsersController extends Controller {
         // Usamos el método Mágico withUsers que lo que envía es una
         // variable $users que contiene todos los usuarios.
         if (!Auth::check()) return Redirect::to('login');
-        return User::all();
-        return view('users')->withUsers(User::all());
+        return view('usuarisLayouts.index')->withUsers(User::all());
     }
  
     /**

@@ -48,7 +48,7 @@ header('Content-Type: text/html; charset=UTF-8');
                             <li class="item m-mobilet no-border item2"><a href="/assistents">Assistents</a></li>
                         </ul>
                     </li>
-                    <li class="item home"><a href="#" class=""><span class="menu_tab">Usuaris del col·legi</span></a></li>
+                    <li class="item home"><a href="/users" class=""><span class="menu_tab">Usuaris del col·legi</span></a></li>
                 </ul>
                 <!-- Fin Menu Superior -->
                 <!--Menu Desplegable Oculto-->
@@ -145,6 +145,13 @@ header('Content-Type: text/html; charset=UTF-8');
                                             <a href="https://correu.cofb.net/" class="enl-banner"><img src="/img/banners/b1.jpg" alt="Banner1" class="banner"></a>
                                             <a href="http://bbs2015.cofb.net/" class="enl-banner"><img src="/img/banners/b2.jpg" alt="Banner2" class="banner"></a>
                                             <a href="http://bbs2015.cofb.net/group/guest/guies-de-qualitat" class="enl-banner"><img src="/img/banners/b3.jpg" alt="Banner3" class="banner"></a>
+                                            <a href="http://bbs2015.cofb.net/group/guest/guia-de-dispensacio" class="enl-banner"><img src="/img/banners/b4.jpg" alt="Banner3" class="banner"></a>
+                                            <a href="http://bbs2015.cofb.net/group/guest/dades-economiques-i-control-qualitat-facturacio-re" class="enl-banner"><img src="/img/banners/b5.jpg" alt="Banner3" class="banner"></a>
+                                            <a href="http://bbs2015.cofb.net/group/guest/comunicats-del-col-legi" class="enl-banner"><img src="/img/banners/b6.jpg" alt="Banner3" class="banner"></a>
+                                            <a href="http://bbs2015.cofb.net/group/guest/bases-de-dades-i-recursos-professionals" class="enl-banner"><img src="/img/banners/b7.jpg" alt="Banner3" class="banner"></a>
+                                            <a href="http://bbs2015.cofb.net/group/guest/cataleg-del-fons-de-la-biblioteca" class="enl-banner"><img src="/img/banners/b8.jpg" alt="Banner3" class="banner"></a>
+                                            <a href="http://bbs2015.cofb.net/group/guest/circular-farmaceutica" class="enl-banner"><img src="/img/banners/b9.jpg" alt="Banner3" class="banner"></a>
+                                            <a href="http://bbs2015.cofb.net/group/guest/junta-de-govern"><img src="/img/banners/b10.jpg" alt="Banner3" class="banner"></a>
                                         </section>
                                         <!--Fin Banners-->
                                     <!--Fin Columna de Contenido Derecha-->
