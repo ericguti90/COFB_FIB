@@ -48,7 +48,7 @@ header('Content-Type: text/html; charset=UTF-8');
                             <li class="item m-mobilet no-border item2"><a href="/assistents">Assistents</a></li>
                         </ul>
                     </li>
-                    <li class="item" style="background: none;background-color: #00a9a1; border-left: 1px solid #40c2d3; width: 206px;"><a id="inici" href="#" class=""><span class="menu_tab"></span></a></li>
+                    <li class="item home"><a href="#" class=""><span class="menu_tab">Usuaris del col·legi</span></a></li>
                 </ul>
                 <!-- Fin Menu Superior -->
                 <!--Menu Desplegable Oculto-->

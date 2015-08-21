@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="column-form med-2"> 
                                         <label for="tel-2" style="margin-top:.8em">Contrasenya</label>
-                                        <input name="password" id="tel-2" type="password" class="inputText">
+                                        <input name="password" id="tel-2" type="password" class="inputText" onkeypress="if(event.keyCode == 13) enviar_formulario()">
                                     </div>
                                     <!--<input type="hidden" name="_token" value="{{ csrf_token() }}"/>-->
                                 </div>
@@ -190,6 +190,11 @@ $(document).ready(function(){
     $('.next').unbind(); //unbind. to stop multiple form submit.     
   }); 
 });
+
+function enviar_formulario(){
+  $("#next").click();
+};
+
 /*
 $(document).ready(function(){
   $('.btn').click(function(){            

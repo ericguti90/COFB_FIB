@@ -26,6 +26,7 @@ class HomeController extends Controller {
 	// Al acceder a login mostramos un formulario de Login.
 	public function getLogin()
 	{
+		if (Auth::check()) return Redirect::to('/esdeveniments');
 		return view('welcome');
 	}
  
